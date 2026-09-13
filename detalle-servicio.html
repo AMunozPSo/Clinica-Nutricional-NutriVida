@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Detalle del Servicio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/detalle-servicio.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link is-active">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section>
+      <h1>Evaluación Nutricional Integral</h1>
+      <p style="color: var(--color-5); font-size: 1.1rem;">Conoce tu estado nutricional actual y establece bases sólidas para alcanzar tus objetivos de salud con un plan 100% personalizado.</p>
+    </section>
+
+    <section class="detalle-grid">
+      <div class="detalle-contenido">
+        <h2>Descripción del Servicio</h2>
+        <p>Esta evaluación consta de una entrevista a fondo donde analizamos tus hábitos alimentarios, estilo de vida, gustos y patologías. A partir de esto, tomamos medidas antropométricas para entender tu composición corporal.</p>
+        
+        <h3>¿Qué incluye la sesión?</h3>
+        <ul style="line-height: 1.8; color: var(--color-5);">
+          <li>Anamnesis clínica y alimentaria.</li>
+          <li>Medición de peso, talla y perímetros corporales.</li>
+          <li>Cálculo de requerimientos calóricos diarios.</li>
+          <li>Entrega de pauta alimentaria personalizada a través de la plataforma.</li>
+        </ul>
+
+        <div style="margin-top: 30px;">
+          <a href="solicitud-cita.html" class="btn-primario">Agendar este servicio</a>
+        </div>
+      </div>
+
+      <aside class="detalle-sidebar">
+        <div class="profesional-card">
+          <h3 style="margin-top: 0;">Profesional Asignado</h3>
+          <div style="display: flex; align-items: center; gap: 15px; margin-top: 15px;">
+            <div style="width: 60px; height: 60px; background-color: var(--color-3); border-radius: 50%;"></div>
+            <div>
+              <strong style="color: var(--color-5); display: block;">Dra. Andrea Valdés</strong>
+              <span style="font-size: 0.9rem; color: var(--color-4);">Nutricionista Clínica</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; margin-top: 15px;">Especialista en recomposición corporal y control de enfermedades crónicas. Más de 5 años de experiencia.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section style="margin-top: 50px; border-top: 2px solid var(--color-2); padding-top: 30px;">
+      <h2>Servicios Recomendados</h2>
+      <div class="relacionados-grid">
+        <article class="relacionado-card">
+          <h3 style="margin-top: 0;">Control de Seguimiento</h3>
+          <p style="font-size: 0.9rem;">Evaluación de progresos a los 15 días tras la entrega de tu primera pauta alimentaria.</p>
+        </article>
+        <article class="relacionado-card">
+          <h3 style="margin-top: 0;">Asesoría Deportiva</h3>
+          <p style="font-size: 0.9rem;">Enfocada en mejorar el rendimiento físico y la hipertrofia muscular.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
