@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - NutriVida</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS (única librería externa permitida, solo en esta vista) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="css/global.css">
+    <!-- CSS Específico de esta vista -->
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar__logo">NutriVida</div>
+        <nav class="navbar__menu">
+            <a href="catalogo.html">Servicios</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal de la vista -->
+    <main class="section">
+        <div class="container">
+            <h1 class="text-center">Contáctanos</h1>
+            <p class="text-center">¿Tienes dudas sobre nuestros servicios? Escríbenos y te responderemos a la brevedad.</p>
+
+            <div class="contacto-grid">
+
+                <!-- Formulario -->
+                <form id="form-contacto" class="form" novalidate>
+                    <div class="form__field">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" maxlength="100" required>
+                        <span class="form__error" id="error-nombre"></span>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" maxlength="100" required>
+                        <span class="form__error" id="error-correo"></span>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="comentario" maxlength="500" rows="5" required></textarea>
+                        <span class="form__error" id="error-comentario"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+
+                    <p id="mensaje-exito" class="mensaje-exito" hidden>
+                        ¡Gracias! Tu mensaje fue enviado correctamente.
+                    </p>
+                </form>
+
+                <!-- Mapa -->
+                <div class="mapa-container">
+                    <div id="mapa" aria-label="Mapa con la ubicación de la clínica NutriVida"></div>
+                    <p class="text-muted">Av. Alemania 671, Temuco, Región de La Araucanía.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer-->
+    <footer class="footer">
+        <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Leaflet JS (antes de nuestro script, porque contacto.js lo necesita) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- JS de la vista -->
+    <script src="js/contacto.js"></script>
+</body>
+</html>

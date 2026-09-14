@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Progreso - NutriVida</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="css/global.css">
+    <!-- CSS Específico de esta vista -->
+    <link rel="stylesheet" href="css/historial.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar__logo">NutriVida</div>
+        <nav class="navbar__menu">
+            <a href="catalogo.html">Servicios</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal de la vista -->
+    <main class="section">
+        <div class="container">
+            <h1 class="text-center">Historial de progreso</h1>
+            <p class="text-center">Registra tu peso después de cada control y visualiza tu evolución en el tiempo.</p>
+
+            <form id="form-historial" class="form" novalidate>
+                <div class="form__field">
+                    <label for="fecha">Fecha del control</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                    <span class="form__error" id="error-fecha"></span>
+                </div>
+
+                <div class="form__field">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" name="peso" step="0.1" min="20" max="300" required>
+                    <span class="form__error" id="error-peso"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary">Agregar registro</button>
+            </form>
+
+            <div class="chart-container">
+                <canvas id="grafico-peso" width="600" height="300"
+                        role="img" aria-label="Gráfico de barras con la evolución del peso del paciente">
+                </canvas>
+                <p id="mensaje-vacio" class="text-muted">Aún no tienes registros. Agrega tu primer control con el formulario de arriba.</p>
+            </div>
+
+            <table class="table" id="tabla-historial">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Peso (kg)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-historial-body">
+                    <!-- Las filas se generan con JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer-->
+    <footer class="footer">
+        <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JS de la vista -->
+    <script src="js/historial.js"></script>
+</body>
+</html>
