@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - NutriVida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+    <!-- Pega aquí exactamente el mismo <header> de tu plantilla-vista.html -->
+
+    <main class="section">
+        <div class="container" style="max-width: 500px; margin: 0 auto;">
+            <h1 class="text-center">Crea tu cuenta</h1>
+            
+            <form id="registroForm" class="form">
+                <div class="form__field">
+                    <label for="runInput">RUN (Sin puntos ni guion)</label>
+                    <input type="text" id="runInput" placeholder="Ej: 123456789" maxlength="9">
+                    <span class="form__error" id="errorRun" style="display: none;">RUN inválido (7 a 9 caracteres, sin puntos ni guion).</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="correoInput">Correo Electrónico</label>
+                    <input type="email" id="correoInput" placeholder="correo@ejemplo.com">
+                    <span class="form__error" id="errorCorreo" style="display: none;">Formato de correo inválido.</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="passInput">Contraseña</label>
+                    <input type="password" id="passInput" placeholder="Mínimo 6 caracteres">
+                    <span class="form__error" id="errorPass" style="display: none;">La contraseña debe tener al menos 6 caracteres.</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="regionSelect">Región</label>
+                    <select id="regionSelect">
+                        <option value="">Seleccione una región...</option>
+                    </select>
+                </div>
+
+                <div class="form__field">
+                    <label for="comunaSelect">Comuna</label>
+                    <select id="comunaSelect" disabled>
+                        <option value="">Seleccione primero una región...</option>
+                    </select>
+                    <span class="form__error" id="errorUbicacion" style="display: none;">Debes seleccionar región y comuna.</span>
+                </div>
+
+                <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 15px;">Registrarme</button>
+                <div id="mensajeExito" style="color: var(--color-forest); display: none; margin-top: 15px; text-align: center; font-weight: 600;">¡Registro exitoso!</div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Pega aquí exactamente el mismo <footer> de tu plantilla-vista.html -->
+
+    <script src="js/main.js"></script>
+    <script src="js/registro.js"></script>
+</body>
+</html>
