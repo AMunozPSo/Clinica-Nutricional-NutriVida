@@ -1,0 +1,102 @@
+/* Contenedor principal de la vista */
+.solicitud-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Tarjeta del formulario */
+.form-card {
+  background-color: var(--color-2);
+  padding: 30px;
+  border-radius: 10px;
+  border-top: 5px solid var(--color-4);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-card h1 {
+  color: var(--color-4);
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-card > p {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+/* Estilo de los campos */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-5);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-3);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-family: var(--font-textos);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--color-4);
+  border-color: var(--color-4);
+}
+
+/* El botón principal */
+.btn-submit {
+  width: 100%;
+  background-color: var(--color-4);
+  color: var(--color-1);
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-5);
+}
+
+/* c para el mensaje de resultado */
+.mensaje-alerta {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  display: none;
+}
+
+.alerta-error {
+  display: block;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alerta-exito {
+  display: block;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
