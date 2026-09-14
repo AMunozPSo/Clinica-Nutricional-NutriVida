@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas - NutriVida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">NutriVida</a>
+            <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="navbar__nav" id="navMenu">
+                <a href="index.html" class="navbar__link">Inicio</a>
+                <a href="catalogo.html" class="navbar__link">Catálogo</a>
+                <a href="nosotros.html" class="navbar__link">Nosotros</a>
+                <a href="blogs.html" class="navbar__link">Blog</a>
+                <a href="contacto.html" class="navbar__link">Contacto</a>
+                <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <h1 class="text-center">Mis Citas</h1>
+            
+            <div style="overflow-x: auto; margin-top: 20px; background-color: #ffffff; border-radius: 8px; border: 1px solid var(--color-sage);">
+                <table class="table" id="tablaCitas">
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Servicio</th>
+                            <th>Modalidad</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="citasBody">
+                        <!-- JS inyectará las filas aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background-color: var(--color-gold); color: white; text-align: center; padding: 20px; margin-top: auto;">
+        <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/citas.js"></script>
+</body>
+</html>
