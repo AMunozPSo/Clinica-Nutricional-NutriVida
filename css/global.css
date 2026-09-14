@@ -27,8 +27,6 @@ h1, h2, h3, h4 {
     margin-bottom: 15px;
 }
 
-
-
 .section {
     padding: 40px 20px;
     min-height: calc(100vh - 150px);
@@ -105,17 +103,12 @@ h1, h2, h3, h4 {
 }
 
 @media (min-width: 768px) {
-<<<<<<< HEAD
     .navbar__inner {
         flex-wrap: nowrap;
     }
     .navbar__toggle {
         display: none;
     }
-=======
-    .navbar__inner { flex-wrap: nowrap; }
-    .navbar__toggle { display: none; }
->>>>>>> 89c21283368693b9664e7f7e55a779356be94ad9
     .navbar__nav {
         display: flex;
         flex-direction: row;
@@ -124,13 +117,9 @@ h1, h2, h3, h4 {
         gap: 25px;
         align-items: center;
     }
-<<<<<<< HEAD
     .navbar__link {
         padding: 0;
     }
-=======
-    .navbar__link { padding: 0; }
->>>>>>> 89c21283368693b9664e7f7e55a779356be94ad9
 }
 
 /* Botones */
@@ -156,8 +145,6 @@ h1, h2, h3, h4 {
     background-color: var(--color-text);
 }
 
-<<<<<<< HEAD
-=======
 .btn--secondary {
     background-color: var(--color-forest);
     color: var(--color-text);
@@ -200,7 +187,6 @@ h1, h2, h3, h4 {
 
 .card .btn { margin-top: auto; }
 
->>>>>>> 89c21283368693b9664e7f7e55a779356be94ad9
 /* Formularios */
 .form {
     background-color: #ffffff;
@@ -231,7 +217,6 @@ h1, h2, h3, h4 {
     background-color: var(--color-bg);
 }
 
-<<<<<<< HEAD
 .form__field input:focus, 
 .form__field select:focus {
     outline: none;
@@ -242,7 +227,8 @@ h1, h2, h3, h4 {
     color: #d9534f;
     font-size: 0.85em;
     margin-top: 5px;
-=======
+}
+
 /* Tablas */
 .table {
     width: 100%;
@@ -260,5 +246,4 @@ h1, h2, h3, h4 {
 .table th {
     background-color: var(--color-gold);
     color: var(--color-bg);
->>>>>>> 89c21283368693b9664e7f7e55a779356be94ad9
 }
