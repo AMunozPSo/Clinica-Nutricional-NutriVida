@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Plan Alimenticio Vigente</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/plan.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    
+    <section class="plan-header">
+      <h1>Tu Plan Alimenticio Vigente</h1>
+      <p><strong>Paciente:</strong> Felipe Araya</p>
+      <p><strong>Profesional a cargo:</strong> Dra. Andrea Valdés</p>
+      <p><strong>Fecha de emisión:</strong> 20 de septiembre de 2026</p>
+      <p><strong>Objetivo:</strong> Recomposición corporal y mejora de rendimiento.</p>
+      <a href="#" class="btn-descarga">Descargar en PDF (Simulación)</a>
+    </section>
+
+    <section>
+      <h2 style="color: var(--color-4); font-family: var(--font-titulos);">Distribución Diaria</h2>
+      
+      <div class="comidas-grid">
+        <article class="comida-card">
+          <h3>1. Desayuno (08:00 - 09:00)</h3>
+          <ul>
+            <li>2 rebanadas de pan integral o de masa madre.</li>
+            <li>2 huevos revueltos o 50g de palta triturada.</li>
+            <li>1 taza de té verde o café sin azúcar.</li>
+            <li>1 porción de fruta (ej: 1 manzana o 1 taza de arándanos).</li>
+          </ul>
+        </article>
+
+        <article class="comida-card">
+          <h3>2. Almuerzo (13:30 - 14:30)</h3>
+          <ul>
+            <li>150g de proteína magra (pollo a la plancha, pescado o tofu).</li>
+            <li>1 taza de carbohidrato complejo (arroz integral o quínoa).</li>
+            <li>Abundante ensalada verde (espinaca, lechuga, pepino) con 1 cdta de aceite de oliva.</li>
+          </ul>
+        </article>
+
+        <article class="comida-card">
+          <h3>3. Colación PM (17:00 - 17:30)</h3>
+          <ul>
+            <li>1 yogurt alto en proteínas (sin azúcar añadida).</li>
+            <li>Un puñado pequeño (30g) de almendras o nueces.</li>
+          </ul>
+        </article>
+
+        <article class="comida-card">
+          <h3>4. Cena (20:30 - 21:30)</h3>
+          <ul>
+            <li>120g de proteína ligera (atún al agua o tortilla de 2 claras).</li>
+            <li>Ensalada de verduras cocidas (brócoli, zanahoria, zapallo italiano).</li>
+            <li>Infusión digestiva (manzanilla o menta).</li>
+          </ul>
+        </article>
+      </div>
+      
+      <div style="background-color: var(--color-1); padding: 15px; border-radius: 8px; border: 1px solid var(--color-3);">
+        <p style="margin: 0; color: var(--color-5); font-size: 0.95rem;">
+          <strong>Nota de tu nutricionista:</strong> Recuerda beber al menos 2 a 2.5 litros de agua al día. Si tienes entrenamiento intenso, puedes agregar una fruta extra antes de la sesión.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

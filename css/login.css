@@ -1,0 +1,90 @@
+/* Aca centramos el formulario */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* Tarjeta del formulario */
+.login-card {
+  background-color: var(--color-2);
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  border-top: 5px solid var(--color-4);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.login-card h1 {
+  font-family: var(--font-titulos);
+  color: var(--color-4);
+  text-align: center;
+  margin-top: 0;
+}
+
+/* Los campos del formulario */
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-3);
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: var(--font-textos);
+}
+.form-group input:focus {
+  outline: 2px solid var(--color-4);
+  border-color: var(--color-4);
+}
+
+/* Mensajes de error con color rojo para que se mas representativo */
+.error-msg {
+  color: #b3402c;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: none; 
+}
+
+/* Aca esta la caja de confirmacion*/
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+/* Estos son los botones y los enlaces */
+.btn-primario {
+  display: block;
+  width: 100%;
+  background-color: var(--color-4);
+  color: var(--color-1);
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.btn-primario:hover { background-color: var(--color-5); }
+
+.registro-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+.registro-link a {
+  color: var(--color-4);
+  font-weight: 600;
+  text-decoration: none;
+}
+.registro-link a:hover { text-decoration: underline; }
