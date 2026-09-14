@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Nuestro Blog</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/blogs.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link is-active">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="blog-header">
+      <h1>Blog de Nutrición</h1>
+      <p>Artículos, consejos y recetas para tu bienestar diario.</p>
+    </section>
+
+    <div class="blog-grid">
+      <!-- Tarjeta 1 -->
+      <article class="blog-card">
+        <div class="img-placeholder">[ Espacio para imagen de Creatina ]</div>
+        <div class="blog-card-content">
+          <span class="blog-date">10 de Septiembre, 2026</span>
+          <h2>5 Mitos y Verdades sobre la Creatina</h2>
+          <p>¿Realmente retiene líquidos? ¿Es solo para fisiculturistas? Aclaramos las dudas más comunes sobre este popular suplemento.</p>
+          <a href="blog-1.html" class="btn-leer">Leer artículo →</a>
+        </div>
+      </article>
+
+      <!-- Tarjeta 2 -->
+      <article class="blog-card">
+        <div class="img-placeholder">[ Espacio para imagen de Bowl de Avena ]</div>
+        <div class="blog-card-content">
+          <span class="blog-date">05 de Septiembre, 2026</span>
+          <h2>El poder matutino: Avena, Yogurt y Granola</h2>
+          <p>Descubre por qué esta combinación es el desayuno ideal para asegurar energía sostenida en todas tus actividades diarias.</p>
+          <a href="blog-2.html" class="btn-leer">Leer artículo →</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
