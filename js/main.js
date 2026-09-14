@@ -1,4 +1,11 @@
 <<<<<<< HEAD
+// Lógica global para el Navbar responsivo
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
@@ -16,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
+>>>>>>> c989e7bb13dd4a3af650f47b372c9d3054ea3f6b
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
             // Alterna la clase para mostrar/ocultar el menú
@@ -26,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', !isExpanded);
         });
     }
+<<<<<<< HEAD
+});
+=======
 });
 >>>>>>> 17d0dbf56098ecc9c9d3508fbb2c8f327680c76f
 =======
@@ -47,3 +58,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 >>>>>>> 28f145ca0ead4e067b88b20f9dbc2a5a22fa8092
+>>>>>>> c989e7bb13dd4a3af650f47b372c9d3054ea3f6b
