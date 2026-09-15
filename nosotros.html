@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - NutriVida</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="css/global.css">
+    <!-- CSS Específico de esta vista -->
+    <link rel="stylesheet" href="css/nosotros.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar__logo">NutriVida</div>
+        <nav class="navbar__menu">
+            <a href="catalogo.html">Servicios</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal de la vista -->
+    <main class="section">
+        <div class="container">
+
+            <h1 class="text-center">Sobre NutriVida</h1>
+
+            <!-- Historia -->
+            <section class="nosotros-bloque">
+                <h2>Nuestra historia</h2>
+                <p>
+                    NutriVida nació en 2018 en Temuco con una idea simple: la buena alimentación
+                    no debería ser complicada ni intimidante. Comenzamos como una consulta pequeña
+                    atendida por una sola nutricionista y, con el tiempo, fuimos sumando talleres
+                    grupales, planes especializados y un equipo comprometido con acompañar a cada
+                    paciente en su propio ritmo, sin dietas genéricas ni promesas irreales.
+                </p>
+                <p>
+                    Hoy seguimos creciendo, pero mantenemos lo mismo que nos hizo empezar: escuchar
+                    primero, y recién después proponer un plan.
+                </p>
+            </section>
+
+            <!-- Misión -->
+            <section class="nosotros-bloque">
+                <h2>Nuestra misión</h2>
+                <p>
+                    Entregar asesoría nutricional personalizada, basada en evidencia y adaptada a la
+                    realidad de cada persona, promoviendo hábitos sostenibles en el tiempo por sobre
+                    resultados rápidos.
+                </p>
+            </section>
+
+            <!-- Equipo -->
+            <section class="nosotros-bloque">
+                <h2>Nuestro equipo</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <img src="https://placehold.co/300x300?text=Nutricionista+1" alt="Foto de la nutricionista Camila Rojas">
+                        <h3>Camila Rojas</h3>
+                        <p class="text-muted">Nutricionista clínica</p>
+                        <p>Especialista en control de peso y nutrición deportiva, con más de 8 años de experiencia acompañando pacientes.</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/300x300?text=Nutricionista+2" alt="Foto del nutricionista Ignacio Fuentes">
+                        <h3>Ignacio Fuentes</h3>
+                        <p class="text-muted">Nutricionista clínico</p>
+                        <p>Enfocado en nutrición vegetariana/vegana y educación alimentaria a través de talleres grupales.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Carrusel -->
+            <section class="nosotros-bloque">
+                <h2>Conoce nuestro espacio</h2>
+
+                <div class="carrusel" id="carrusel">
+                    <div class="carrusel__track" id="carrusel-track">
+                        <img src="https://placehold.co/800x400?text=Recepción+NutriVida" alt="Recepción de la clínica NutriVida" class="carrusel__img">
+                        <img src="https://placehold.co/800x400?text=Sala+de+consulta" alt="Sala de consulta nutricional" class="carrusel__img">
+                        <img src="https://placehold.co/800x400?text=Sala+de+talleres" alt="Sala de talleres grupales" class="carrusel__img">
+                    </div>
+
+                    <button class="carrusel__btn carrusel__btn--prev" id="btn-prev" aria-label="Imagen anterior">‹</button>
+                    <button class="carrusel__btn carrusel__btn--next" id="btn-next" aria-label="Siguiente imagen">›</button>
+
+                    <div class="carrusel__dots" id="carrusel-dots"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer-->
+    <footer class="footer">
+        <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JS de la vista -->
+    <script src="js/nosotros.js"></script>
+</body>
+</html>

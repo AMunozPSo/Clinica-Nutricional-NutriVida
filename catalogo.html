@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida — Catálogo de servicios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR — copiado de vista-plantilla.html, con "Catálogo" activo ===== -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link is-active">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section section--page-title">
+      <h1>Catálogo de servicios</h1>
+      <p>Consultas, planes especializados, evaluaciones y talleres grupales. Filtra por categoría o modalidad, o busca por nombre.</p>
+    </section>
+
+    <!-- ===== FILTROS ===== -->
+    <section class="section catalogo-filtros">
+      <div class="filtros-grupo" role="group" aria-label="Filtrar por categoría" id="filtroCategoria">
+        <button class="filtro-btn is-active" data-categoria="todos">Todos</button>
+        <button class="filtro-btn" data-categoria="Consulta">Consultas</button>
+        <button class="filtro-btn" data-categoria="Plan especializado">Planes especializados</button>
+        <button class="filtro-btn" data-categoria="Evaluación">Evaluaciones</button>
+        <button class="filtro-btn" data-categoria="Taller grupal">Talleres grupales</button>
+      </div>
+
+      <div class="filtros-fila-secundaria">
+        <div class="filtros-grupo" role="group" aria-label="Filtrar por modalidad" id="filtroModalidad">
+          <button class="filtro-btn is-active" data-modalidad="todos">Todas las modalidades</button>
+          <button class="filtro-btn" data-modalidad="presencial">Presencial</button>
+          <button class="filtro-btn" data-modalidad="online">Online</button>
+        </div>
+
+        <div class="buscador">
+          <input type="search" id="buscadorInput" placeholder="Buscar por nombre o palabra clave..." aria-label="Buscar servicio">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GRID DE SERVICIOS (se llena con JS) ===== -->
+    <section class="section">
+      <div class="cards-grid" id="catalogoGrid"></div>
+      <p id="catalogoVacio" class="catalogo-vacio" hidden>No encontramos servicios que coincidan con tu búsqueda. Prueba con otro filtro.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <p class="footer__brand">NutriVida</p>
+        <p>Clínica nutricional en Temuco, Región de La Araucanía. Atendiendo desde 2016.</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__title">Navegación</p>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer__col">
+        <p class="footer__title">Contacto</p>
+        <p>Lun a Vie, 9:00–18:00</p>
+        <p>contacto@nutrivida.cl</p>
+      </div>
+    </div>
+    <p class="footer__copy">&copy; 2026 NutriVida. Proyecto académico DSY1104.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

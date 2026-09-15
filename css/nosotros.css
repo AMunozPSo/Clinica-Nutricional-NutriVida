@@ -1,0 +1,92 @@
+/* Vista Nosotros */
+
+.nosotros-bloque {
+  margin-bottom: 2.5rem;
+}
+
+.nosotros-bloque h2 {
+  margin-bottom: 0.75rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+/* --- Carrusel --- */
+.carrusel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carrusel__track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carrusel__img {
+  width: 100%;
+  flex-shrink: 0;
+  display: block;
+  object-fit: cover;
+}
+
+.carrusel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-forest);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.carrusel__btn--prev {
+  left: 10px;
+}
+
+.carrusel__btn--next {
+  right: 10px;
+}
+
+.carrusel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.75rem;
+}
+
+.carrusel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-sage);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.carrusel__dot--activo {
+  background-color: var(--color-forest);
+}
+
+/* Mobile: botones más chicos para no tapar tanto la imagen */
+@media (max-width: 480px) {
+  .carrusel__btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+}
