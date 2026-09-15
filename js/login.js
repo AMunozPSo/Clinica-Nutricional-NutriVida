@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isValid) {
       alert("La validacion fue exitosa!. Iniciando sesión...");
+      window.location.href = "home-admin.html";
     }
   });
 });
