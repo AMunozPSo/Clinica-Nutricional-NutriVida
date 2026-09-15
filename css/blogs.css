@@ -99,6 +99,22 @@
     font-size: 1.05rem;
 }
 
+/* Esto es para las imagenes del blog*/
+.blog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Evita que la imagen se estire o deforme */
+    display: block;
+}
+
+.blog-image-large {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
 @media (min-width: 768px) {
     .blog-grid {
         display: grid;
