@@ -28,7 +28,7 @@
         <a href="nosotros.html" class="navbar__link">Nosotros</a>
         <a href="blogs.html" class="navbar__link">Blog</a>
         <a href="contacto.html" class="navbar__link">Contacto</a>
-        <a href="login.html" class="navbar__link navbar__link--cta is-active">Iniciar sesión</a>
+        <a href="login.html" class="navbar__link navbar__link--cta is-active" id="navAuthLink">Iniciar sesión</a>
       </nav>
     </div>
   </header>
@@ -56,6 +56,7 @@
         </div>
 
         <button type="submit" class="btn-primario">Ingresar</button>
+        <div id="errorCredenciales" class="error-msg"></div>
       </form>
 
       <div class="registro-link">
@@ -65,6 +66,7 @@
   </main>
 
   <script src="js/main.js"></script>
+  <script src="js/session.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>

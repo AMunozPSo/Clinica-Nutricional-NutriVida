@@ -4,6 +4,8 @@ const datosUbicacion = {
     "Biobío": ["Concepción", "Talcahuano", "Los Ángeles"]
 };
 
+const CLAVE_USUARIOS = "nutrivida_usuarios";
+
 const form = document.getElementById('registroForm');
 const inputRun = document.getElementById('runInput');
 const inputCorreo = document.getElementById('correoInput');
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 selectRegion.addEventListener('change', function() {
     const regionSeleccionada = this.value;
     selectComuna.innerHTML = '<option value="">Seleccione una comuna...</option>';
-    
+
     if (regionSeleccionada !== "") {
         selectComuna.disabled = false;
         datosUbicacion[regionSeleccionada].forEach(comuna => {
@@ -42,6 +44,16 @@ selectRegion.addEventListener('change', function() {
         selectComuna.disabled = true;
     }
 });
+
+// --- Utilidades de almacenamiento ---
+function obtenerUsuarios() {
+    const data = localStorage.getItem(CLAVE_USUARIOS);
+    return data ? JSON.parse(data) : [];
+}
+
+function guardarUsuarios(usuarios) {
+    localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(usuarios));
+}
 
 form.addEventListener('submit', function(evento) {
     evento.preventDefault();
@@ -75,10 +87,35 @@ form.addEventListener('submit', function(evento) {
         formularioValido = false;
     }
 
+    // Verificar que el correo no esté ya registrado
+    const usuarios = obtenerUsuarios();
+    const correoNormalizado = inputCorreo.value.trim().toLowerCase();
+    const yaExiste = usuarios.some(u => u.correo.toLowerCase() === correoNormalizado);
+
+    if (formularioValido && yaExiste) {
+        errCorreo.textContent = "Ya existe una cuenta registrada con este correo.";
+        errCorreo.style.display = 'block';
+        formularioValido = false;
+    }
+
     if (formularioValido) {
+        usuarios.push({
+            run: inputRun.value.trim(),
+            correo: correoNormalizado,
+            password: inputPass.value, // Nota: en texto plano porque aún no hay backend que la hashee
+            region: selectRegion.value,
+            comuna: selectComuna.value,
+        });
+        guardarUsuarios(usuarios);
+
+        msjExito.textContent = "¡Registro exitoso! Redirigiendo a inicio de sesión...";
         msjExito.style.display = 'block';
         form.reset();
         selectComuna.disabled = true;
         selectComuna.innerHTML = '<option value="">Seleccione primero una región...</option>';
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1500);
     }
 });
