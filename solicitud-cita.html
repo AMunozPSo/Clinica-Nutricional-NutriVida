@@ -15,7 +15,7 @@
 <body>
   <header class="navbar">
     <div class="navbar__inner">
-      <a href="index.html" class="navbar_logo">NutriVida</a>
+      <a href="index.html" class="navbar__logo">NutriVida</a>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span><span></span>
@@ -27,7 +27,8 @@
         <a href="nosotros.html" class="navbar__link">Nosotros</a>
         <a href="blogs.html" class="navbar__link">Blog</a>
         <a href="contacto.html" class="navbar__link">Contacto</a>
-        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+        <!-- Este id es vital para que session.js reconozca el botón -->
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
       </nav>
     </div>
   </header>
@@ -40,8 +41,15 @@
       <form id="formulario-cita" novalidate>
         
         <div class="form-group">
-          <label for="servicio">Servicio seleccionado</label>
-          <input type="text" id="servicio" value="Evaluación Nutricional Integral ($25.000)" readonly>
+          <label for="servicio">Servicio a agendar</label>
+          <select id="servicio">
+            <option value="">-- Selecciona un servicio --</option>
+            <option value="Primera consulta nutricional">Primera consulta nutricional ($35.000)</option>
+            <option value="Control nutricional (seguimiento)">Control nutricional (seguimiento) ($25.000)</option>
+            <option value="Plan pérdida de peso (1 mes)">Plan pérdida de peso (1 mes) ($65.000)</option>
+            <option value="Evaluación Nutricional Integral">Evaluación Nutricional Integral ($25.000)</option>
+            <option value="Taller de cocina nutritiva">Taller de cocina nutritiva ($20.000)</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -57,12 +65,15 @@
         <!-- Layout en línea para pantalla ancha -->
         <div style="display: flex; gap: 15px;">
           <div class="form-group" style="flex: 1;">
-            <label for="fecha">Fecha</label>
+            <label for="fecha">Fecha (Lunes a Viernes)</label>
             <input type="date" id="fecha">
           </div>
           <div class="form-group" style="flex: 1;">
-            <label for="horario">Hora preferida</label>
-            <input type="time" id="horario">
+            <label for="horario">Hora disponible</label>
+            <!-- Select en lugar de input para generar los bloques de 30 mins -->
+            <select id="horario" disabled>
+              <option value="">Primero elige fecha</option>
+            </select>
           </div>
         </div>
 
@@ -74,12 +85,16 @@
         <button type="submit" class="btn-submit">Confirmar Solicitud</button>
         
         <div id="mensaje-resultado" class="mensaje-alerta"></div>
+        <div id="btn-ver-citas" style="text-align: center; margin-top: 15px; display: none;">
+          <a href="citas.html" class="btn btn--secondary">Ver mis citas</a>
+        </div>
 
       </form>
     </div>
   </main>
 
   <script src="js/main.js"></script>
+  <script src="js/session.js"></script>
   <script src="js/solicitud.js"></script>
 </body>
 </html>
