@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- ===== NAVBAR — copiado de vista-plantilla.html, con "Catálogo" activo ===== -->
+  <!-- Navbar -->
   <header class="navbar">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">NutriVida</a>
@@ -27,20 +27,23 @@
         <a href="nosotros.html" class="navbar__link">Nosotros</a>
         <a href="blogs.html" class="navbar__link">Blog</a>
         <a href="contacto.html" class="navbar__link">Contacto</a>
-        <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+        <!-- Importante: el id="navAuthLink" para que tu login funcione aquí también -->
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <!-- Usamos clase contenedor para centrar todo y márgenes internos -->
+  <main class="contenedor" style="padding-top: 2rem; padding-bottom: 4rem;">
 
-    <section class="section section--page-title">
-      <h1>Catálogo de servicios</h1>
-      <p>Consultas, planes especializados, evaluaciones y talleres grupales. Filtra por categoría o modalidad, o busca por nombre.</p>
-    </section>
+    <!-- Título -->
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-family: var(--font-display); color: var(--color-forest);">Catálogo de servicios</h1>
+      <p style="color: var(--color-text-soft);">Consultas, planes especializados, evaluaciones y talleres grupales. Filtra por categoría o modalidad, o busca por nombre.</p>
+    </div>
 
-    <!-- ===== FILTROS ===== -->
-    <section class="section catalogo-filtros">
+    <!-- Filtros -->
+    <div class="catalogo-filtros">
       <div class="filtros-grupo" role="group" aria-label="Filtrar por categoría" id="filtroCategoria">
         <button class="filtro-btn is-active" data-categoria="todos">Todos</button>
         <button class="filtro-btn" data-categoria="Consulta">Consultas</button>
@@ -60,13 +63,13 @@
           <input type="search" id="buscadorInput" placeholder="Buscar por nombre o palabra clave..." aria-label="Buscar servicio">
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ===== GRID DE SERVICIOS (se llena con JS) ===== -->
-    <section class="section">
+    <!-- Grid de resultados -->
+    <div>
       <div class="cards-grid" id="catalogoGrid"></div>
       <p id="catalogoVacio" class="catalogo-vacio" hidden>No encontramos servicios que coincidan con tu búsqueda. Prueba con otro filtro.</p>
-    </section>
+    </div>
 
   </main>
 
@@ -93,6 +96,8 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <!-- Agregamos session.js para que el navbar recuerde quién eres -->
+  <script src="js/session.js"></script>
   <script src="js/catalogo.js"></script>
 </body>
 </html>
