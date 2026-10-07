@@ -23,7 +23,7 @@
                 <a href="nosotros.html" class="navbar__link">Nosotros</a>
                 <a href="blogs.html" class="navbar__link">Blog</a>
                 <a href="contacto.html" class="navbar__link">Contacto</a>
-                <a href="login.html" class="navbar__link navbar__link--cta">Iniciar sesión</a>
+                <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
             </nav>
         </div>
     </header>
@@ -48,6 +48,13 @@
                     </tbody>
                 </table>
             </div>
+            
+           <!-- Botones de acción -->
+            <div style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
+                <a href="index.html" class="btn btn--secondary">Volver al Inicio</a>
+                <!-- NUEVO BOTÓN PARA AGENDAR -->
+                <a href="solicitud-cita.html" class="btn btn--primary">Agendar nueva cita</a>
+            </div>
         </div>
     </main>
 
@@ -56,6 +63,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
     <script src="js/citas.js"></script>
 </body>
 </html>
