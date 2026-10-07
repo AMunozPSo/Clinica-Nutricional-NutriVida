@@ -35,6 +35,14 @@
             <h1 class="text-center">Crea tu cuenta</h1>
             
             <form id="registroForm" class="form">
+                <form id="registroForm" class="form">
+                <!-- NUEVO CAMPO: Nombre Completo -->
+                <div class="form__field">
+                    <label for="nombreInput">Nombre Completo</label>
+                    <input type="text" id="nombreInput" placeholder="Ej: Juan Pérez">
+                    <span class="form__error" id="errorNombre" style="display: none;">El nombre es obligatorio.</span>
+                </div>
+
                 <div class="form__field">
                     <label for="runInput">RUN (Sin puntos ni guion)</label>
                     <input type="text" id="runInput" placeholder="Ej: 123456789" maxlength="9">
