@@ -4,16 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const sesionGuardada = localStorage.getItem(CLAVE_SESION);
   const linkAuth = document.getElementById("navAuthLink");
 
-  if (!linkAuth) return; // esta página aún no tiene el navbar actualizado
+  if (!linkAuth) return; 
 
   if (sesionGuardada) {
     const sesion = JSON.parse(sesionGuardada);
     linkAuth.textContent = `Hola, ${sesion.nombre} · Cerrar sesión`;
     linkAuth.href = "#";
+    
     linkAuth.addEventListener("click", (e) => {
       e.preventDefault();
-      localStorage.removeItem(CLAVE_SESION);
-      window.location.href = "index.html";
+      
+      // Agregamos una confirmación antes de cerrar
+      const confirmar = confirm("¿Estás seguro de que deseas cerrar sesión?");
+      
+      if (confirmar) {
+        localStorage.removeItem(CLAVE_SESION);
+        window.location.href = "index.html";
+      }
     });
   }
 });
