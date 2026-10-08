@@ -35,8 +35,7 @@
             <h1 class="text-center">Crea tu cuenta</h1>
             
             <form id="registroForm" class="form">
-                <form id="registroForm" class="form">
-                <!-- NUEVO CAMPO: Nombre Completo -->
+                
                 <div class="form__field">
                     <label for="nombreInput">Nombre Completo</label>
                     <input type="text" id="nombreInput" placeholder="Ej: Juan Pérez">
@@ -44,9 +43,15 @@
                 </div>
 
                 <div class="form__field">
-                    <label for="runInput">RUN (Sin puntos ni guion)</label>
-                    <input type="text" id="runInput" placeholder="Ej: 123456789" maxlength="9">
-                    <span class="form__error" id="errorRun" style="display: none;">RUN inválido (7 a 9 caracteres, sin puntos ni guion).</span>
+                    <label for="runInput">RUN (Sin puntos y con guion)</label>
+                    <input type="text" id="runInput" placeholder="Ej: 12345678-9" maxlength="10">
+                    <span class="form__error" id="errorRun" style="display: none;">RUN inválido. Debe ser sin puntos y con guion (Ej: 12345678-9).</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="telefonoInput">Teléfono (9 dígitos)</label>
+                    <input type="tel" id="telefonoInput" placeholder="Ej: 912345678" maxlength="9">
+                    <span class="form__error" id="errorTelefono" style="display: none;">Debe contener exactamente 9 números.</span>
                 </div>
 
                 <div class="form__field">
@@ -59,6 +64,18 @@
                     <label for="passInput">Contraseña</label>
                     <input type="password" id="passInput" placeholder="Mínimo 6 caracteres">
                     <span class="form__error" id="errorPass" style="display: none;">La contraseña debe tener al menos 6 caracteres.</span>
+                </div>
+                <!--Repetir Contraseña -->
+                <div class="form__field">
+                    <label for="passConfirmInput">Repetir Contraseña</label>
+                    <input type="password" id="passConfirmInput" placeholder="Vuelve a escribir tu contraseña">
+                    <span class="form__error" id="errorPassConfirm" style="display: none;">Las contraseñas no coinciden.</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="direccionInput">Dirección (Calle y número)</label>
+                    <input type="text" id="direccionInput" placeholder="Ej: Av. Siempre Viva 123">
+                    <span class="form__error" id="errorDireccion" style="display: none;">La dirección es obligatoria.</span>
                 </div>
 
                 <div class="form__field">
@@ -77,7 +94,7 @@
                 </div>
 
                 <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 15px;">Registrarme</button>
-                <div id="mensajeExito" style="color: var(--color-forest); display: none; margin-top: 15px; text-align: center; font-weight: 600;">¡Registro exitoso!</div>
+                <div id="mensajeExito" style="color: var(--color-forest); display: none; margin-top: 15px; text-align: center; font-weight: 600;">¡Registro exitoso! Redirigiendo...</div>
             </form>
         </div>
     </main>

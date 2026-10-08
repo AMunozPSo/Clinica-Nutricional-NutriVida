@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Gestor de Citas</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-view">
+
+  <div class="dashboard-layout">
+    
+    <!-- Menú Lateral Unificado -->
+    <aside class="sidebar">
+      <h2>NutriVida Admin</h2>
+      
+      <nav style="display: flex; flex-direction: column; height: 100%;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="home-admin.html">Resumen</a>
+          <a href="mantenedor-usuarios.html">Gestión de Usuarios</a>
+          <a href="admin-catalogo.html">Catálogo de Servicios</a>
+          <a href="gestor-citas.html" class="active">Gestor de Citas</a>
+          <a href="admin-reportes.html">Reportes</a>
+        </div>
+        
+        <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" class="btn-logout" style="background-color: var(--color-sage); color: white; text-align: center;">Ver Sitio Web</a>
+          <a href="#" id="btnCerrarSesionAdmin" class="btn-logout" style="text-align: center;">Cerrar Sesión</a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Gestor de Citas</h1>
+      </div>
+      
+      <p style="color: #a0aec0; margin-bottom: 20px;">Administra todas las citas agendadas por los pacientes, actualiza sus estados o aplica filtros para buscar atenciones específicas.</p>
+
+      <!-- Barra de Filtros -->
+      <div style="background-color: var(--color-admin-card); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--color-admin-border); display: flex; gap: 15px; flex-wrap: wrap;">
+        <input type="text" id="filtroPaciente" placeholder="Buscar por nombre o correo..." style="padding: 8px; flex: 1; min-width: 200px; border-radius: 4px; border: 1px solid #ccc;">
+        
+        <select id="filtroEstado" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+          <option value="Todos">Todos los estados</option>
+          <option value="Pendiente">Pendientes</option>
+          <option value="Completada">Completadas</option>
+          <option value="Cancelada">Canceladas</option>
+        </select>
+
+        <button class="btn btn--primary" id="btnFiltrar" style="padding: 8px 15px;">Filtrar</button>
+      </div>
+
+      <!-- Tabla de Citas -->
+      <div style="overflow-x: auto; background-color: var(--color-admin-card); border-radius: 8px; border: 1px solid var(--color-admin-border);">
+        <table class="table-simple" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Fecha y Hora</th>
+              <th>Paciente</th>
+              <th>Servicio</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCitasBody">
+            <!-- JS inyectará las citas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin-citas.js"></script>
+</body>
+</html>

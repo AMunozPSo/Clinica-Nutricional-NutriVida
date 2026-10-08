@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - NutriVida</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="section">
+        <div class="container" style="max-width: 500px; margin: 0 auto;">
+            <h1 class="text-center">Mi Perfil</h1>
+            <p class="text-center" style="margin-bottom: 30px; color: #666;">Actualiza tus datos de contacto y seguridad.</p>
+            
+            <form id="perfilForm" class="form">
+                
+                <!-- Datos fijos (No se pueden cambiar por seguridad) -->
+                <div class="form__field">
+                    <label>RUN</label>
+                    <input type="text" id="perfRun" disabled style="background-color: #f0f0f0; cursor: not-allowed; border: 1px solid #ddd;">
+                </div>
+
+                <div class="form__field">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="perfCorreo" disabled style="background-color: #f0f0f0; cursor: not-allowed; border: 1px solid #ddd;">
+                </div>
+
+                <!-- Datos editables -->
+                <div class="form__field">
+                    <label for="perfNombre">Nombre Completo</label>
+                    <input type="text" id="perfNombre" required>
+                </div>
+
+                <div class="form__field">
+                    <label for="perfTelefono">Teléfono (9 dígitos)</label>
+                    <input type="tel" id="perfTelefono" maxlength="9" required>
+                    <span class="form__error" id="errPerfTelefono" style="display: none;">Debe contener exactamente 9 números.</span>
+                </div>
+
+                <div class="form__field">
+                    <label for="perfDireccion">Dirección (Calle y número)</label>
+                    <input type="text" id="perfDireccion" required>
+                </div>
+
+                <div class="form__field">
+                    <label for="perfPass">Nueva Contraseña <small style="font-weight: normal; color: #666;">(Opcional)</small></label>
+                    <input type="password" id="perfPass" placeholder="Déjalo en blanco para no cambiarla">
+                    <span class="form__error" id="errPerfPass" style="display: none;">La contraseña debe tener al menos 6 caracteres.</span>
+                </div>
+                <!--Repetir Nueva Contraseña -->
+                <div class="form__field">
+                    <label for="perfPassConfirm">Repetir Nueva Contraseña</label>
+                    <input type="password" id="perfPassConfirm" placeholder="Repite tu contraseña si vas a cambiarla">
+                    <span class="form__error" id="errPerfPassConfirm" style="display: none;">Las contraseñas no coinciden.</span>
+                </div>
+
+                <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 15px;">Guardar Cambios</button>
+                <div id="perfMensaje" style="color: var(--color-forest); display: none; margin-top: 15px; text-align: center; font-weight: 600;">¡Datos actualizados con éxito!</div>
+            </form>
+        </div>
+    </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+  </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+</html>
