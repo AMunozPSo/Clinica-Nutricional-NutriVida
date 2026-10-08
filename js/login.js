@@ -1,120 +1,121 @@
 const CLAVE_USUARIOS = "nutrivida_usuarios";
+// CAMBIO CLAVE: Le cambiamos el nombre para que no choque con session.js
+const LOGIN_CLAVE_SESION = "nutrivida_sesion"; 
 
-const ADMIN_CORREO = "admin@nutrivida.cl";
+const ADMIN_CORREOS = [
+  "anto.munozp@duocuc.cl",
+  "feli.arayah@duocuc.cl"
+];
 
 document.addEventListener("DOMContentLoaded", () => {
-  sembrarAdminSiNoExiste();
+  sembrarAdminsSiNoExisten();
 
   const form = document.getElementById("loginForm");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
+  const errorCredenciales = document.getElementById("errorCredenciales");
   const errorEmail = document.getElementById("errorEmail");
   const errorPassword = document.getElementById("errorPassword");
-  const errorCredenciales = document.getElementById("errorCredenciales");
 
   if (!form) return;
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Esto frena la recarga de la página
+    e.preventDefault(); 
+    
+    // Escondemos mensajes viejos
+    if (errorCredenciales) errorCredenciales.style.display = "none";
+    if (errorEmail) errorEmail.style.display = "none";
+    if (errorPassword) errorPassword.style.display = "none";
+    emailInput.style.borderColor = "var(--color-3)";
+    passwordInput.style.borderColor = "var(--color-3)";
+
+    const correoIngresado = emailInput.value.trim().toLowerCase();
+    const passIngresada = passwordInput.value.trim();
+
     let isValid = true;
 
-    if (errorCredenciales) errorCredenciales.style.display = "none";
-
-    // Validación de formato + dominios permitidos
-    const emailRegex = /^[^\s@]+@(duoc\.cl|duocuc\.cl|profesor\.duoc\.cl|gmail\.com|nutrivida\.cl)$/i;
-    if (!emailRegex.test(emailInput.value.trim())) {
-      if (errorEmail) {
-        errorEmail.textContent = "Usa un correo válido (@duoc.cl o @gmail.com).";
-        errorEmail.style.display = "block";
-      }
-      if (emailInput) emailInput.style.borderColor = "#b3402c";
-      isValid = false;
-    } else {
-      if (errorEmail) errorEmail.style.display = "none";
-      if (emailInput) emailInput.style.borderColor = "var(--color-3)";
+    // Validaciones
+    if (correoIngresado === "") {
+        if (errorEmail) errorEmail.style.display = "block";
+        emailInput.style.borderColor = "#b3402c";
+        isValid = false;
     }
 
-    // Validación de contraseña
-    if (passwordInput.value.trim().length < 6) {
-      if (errorPassword) errorPassword.style.display = "block";
-      if (passwordInput) passwordInput.style.borderColor = "#b3402c";
-      isValid = false;
-    } else {
-      if (errorPassword) errorPassword.style.display = "none";
-      if (passwordInput) passwordInput.style.borderColor = "var(--color-3)";
+    if (passIngresada.length < 6) {
+        if (errorPassword) errorPassword.style.display = "block";
+        passwordInput.style.borderColor = "#b3402c";
+        isValid = false;
     }
 
     if (!isValid) return;
 
-    // Lógica de búsqueda de cuenta
+    // Buscar en la base de datos local
     const usuarios = obtenerUsuarios();
-    const correoNormalizado = emailInput.value.trim().toLowerCase();
-    
-    // 1. Verificamos si el correo existe
-    const usuarioEncontrado = usuarios.find((u) => u.correo === correoNormalizado);
+    const usuarioEncontrado = usuarios.find((u) => u.correo === correoIngresado);
 
     if (!usuarioEncontrado) {
-      if (errorCredenciales) {
-        errorCredenciales.innerHTML = "Esta cuenta no existe. <a href='registro.html' style='text-decoration: underline; color: #b3402c;'>Regístrate aquí</a>.";
-        errorCredenciales.style.display = "block";
-      } else {
-        alert("Esta cuenta no existe. Por favor, regístrate.");
-      }
-      return;
+        if (errorCredenciales) {
+            errorCredenciales.innerHTML = "Esta cuenta no existe. <a href='registro.html' style='text-decoration: underline; color: #b3402c;'>Regístrate aquí</a>.";
+            errorCredenciales.style.display = "block";
+        }
+        return;
     }
 
-    // 2. Si existe, verificamos contraseña
-    if (usuarioEncontrado.password !== passwordInput.value) {
-      if (errorCredenciales) {
-        errorCredenciales.textContent = "La contraseña es incorrecta.";
-        errorCredenciales.style.display = "block";
-      } else {
-        alert("La contraseña es incorrecta.");
-      }
-      return;
+    // Verificar contraseña
+    if (usuarioEncontrado.password !== passIngresada) {
+        if (errorCredenciales) {
+            errorCredenciales.textContent = "La contraseña es incorrecta.";
+            errorCredenciales.style.display = "block";
+        }
+        return;
     }
 
-    // 3. Éxito: Guardamos la sesión
+    // Inicio de sesión exitoso
+    const esAdmin = ADMIN_CORREOS.includes(usuarioEncontrado.correo) || usuarioEncontrado.rol === "admin";
+
     const sesion = {
       correo: usuarioEncontrado.correo,
-      run: usuarioEncontrado.run,
-      // Usamos el nombre real, y si no existe (como el admin), cortamos el correo
-      nombre: usuarioEncontrado.nombre || usuarioEncontrado.correo.split("@")[0], 
-      esAdmin: usuarioEncontrado.correo === ADMIN_CORREO,
+      nombre: esAdmin ? "Administrador" : (usuarioEncontrado.nombre || usuarioEncontrado.correo.split("@")[0]), 
+      esAdmin: esAdmin,
     };
-    localStorage.setItem(CLAVE_SESION, JSON.stringify(sesion));
+    
+    // Usamos la variable con el nuevo nombre
+    localStorage.setItem(LOGIN_CLAVE_SESION, JSON.stringify(sesion));
 
-    // 4. Redirigimos a inicio
-    window.location.href = sesion.esAdmin ? "home-admin.html" : "index.html";
+    window.location.href = esAdmin ? "home-admin.html" : "index.html";
   });
 });
 
 function obtenerUsuarios() {
-  try {
-    const data = localStorage.getItem(CLAVE_USUARIOS);
-    const parsed = data ? JSON.parse(data) : [];
-    
-    // Aquí está la solución: si lo que está guardado no es un arreglo válido por culpa de pruebas viejas, lo borra y empieza limpio.
-    if (!Array.isArray(parsed)) {
-      localStorage.removeItem(CLAVE_USUARIOS); 
-      return [];
-    }
-    return parsed;
-  } catch (error) {
-    localStorage.removeItem(CLAVE_USUARIOS);
-    return [];
-  }
+  const data = localStorage.getItem(CLAVE_USUARIOS);
+  return data ? JSON.parse(data) : [];
 }
 
 function guardarUsuarios(usuarios) {
   localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(usuarios));
 }
 
-function sembrarAdminSiNoExiste() {
+function sembrarAdminsSiNoExisten() {
   const usuarios = obtenerUsuarios();
-  const existeAdmin = usuarios.some((u) => u.correo === ADMIN_CORREO);
-  if (!existeAdmin) {
-    usuarios.push({ run: "00000000", correo: ADMIN_CORREO, password: "admin123", region: "", comuna: "" });
+  let huboCambios = false;
+
+  ADMIN_CORREOS.forEach(correoAdmin => {
+    const index = usuarios.findIndex((u) => u.correo === correoAdmin);
+    
+    if (index === -1) {
+      usuarios.push({ 
+          nombre: "Administrador", 
+          correo: correoAdmin, 
+          password: "admin123"
+      });
+      huboCambios = true;
+    } else if (usuarios[index].password !== "admin123" && !usuarios[index].password) {
+      usuarios[index].password = "admin123";
+      huboCambios = true;
+    }
+  });
+
+  if (huboCambios) {
     guardarUsuarios(usuarios);
   }
 }
