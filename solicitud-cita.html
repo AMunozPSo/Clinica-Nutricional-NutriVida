@@ -27,7 +27,6 @@
         <a href="nosotros.html" class="navbar__link">Nosotros</a>
         <a href="blogs.html" class="navbar__link">Blog</a>
         <a href="contacto.html" class="navbar__link">Contacto</a>
-        <!-- Este id es vital para que session.js reconozca el botón -->
         <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
       </nav>
     </div>
@@ -44,11 +43,7 @@
           <label for="servicio">Servicio a agendar</label>
           <select id="servicio">
             <option value="">-- Selecciona un servicio --</option>
-            <option value="Primera consulta nutricional">Primera consulta nutricional ($35.000)</option>
-            <option value="Control nutricional (seguimiento)">Control nutricional (seguimiento) ($25.000)</option>
-            <option value="Plan pérdida de peso (1 mes)">Plan pérdida de peso (1 mes) ($65.000)</option>
-            <option value="Evaluación Nutricional Integral">Evaluación Nutricional Integral ($25.000)</option>
-            <option value="Taller de cocina nutritiva">Taller de cocina nutritiva ($20.000)</option>
+            <!-- JS inyectará los servicios aquí -->
           </select>
         </div>
 
@@ -56,13 +51,10 @@
           <label for="nutricionista">Nutricionista preferido</label>
           <select id="nutricionista">
             <option value="">-- Selecciona un profesional --</option>
-            <option value="Dra. Andrea Valdés">Dra. Andrea Valdés</option>
-            <option value="Nut. Carlos Santander">Nut. Carlos Santander</option>
-            <option value="Sin preferencia">Sin preferencia (El más próximo)</option>
+            <!-- JS inyectará los doctores aquí -->
           </select>
         </div>
 
-        <!-- Layout en línea para pantalla ancha -->
         <div style="display: flex; gap: 15px;">
           <div class="form-group" style="flex: 1;">
             <label for="fecha">Fecha (Lunes a Viernes)</label>
@@ -70,7 +62,6 @@
           </div>
           <div class="form-group" style="flex: 1;">
             <label for="horario">Hora disponible</label>
-            <!-- Select en lugar de input para generar los bloques de 30 mins -->
             <select id="horario" disabled>
               <option value="">Primero elige fecha</option>
             </select>
