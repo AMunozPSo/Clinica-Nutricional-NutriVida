@@ -34,15 +34,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isValid = true;
 
-    // Validaciones
+    // --- NUEVA VALIDACIÓN ESTRICTA DE DOMINIOS ---
     if (correoIngresado === "") {
-        if (errorEmail) errorEmail.style.display = "block";
+        if (errorEmail) {
+            errorEmail.textContent = "El correo es obligatorio.";
+            errorEmail.style.display = "block";
+        }
         emailInput.style.borderColor = "#b3402c";
         isValid = false;
+    } else {
+        const dominiosPermitidos = [
+            "@duocuc.cl", 
+            "@duoc.cl", 
+            "@profesor.duoc.cl", 
+            "@gmail.com", 
+            "@hotmail.com", 
+            "@clinnutrivida.cl"
+        ];
+        
+        const correoValido = dominiosPermitidos.some(dominio => correoIngresado.endsWith(dominio));
+
+        if (!correoValido) {
+            if (errorEmail) {
+                // Modificamos el texto para que el usuario sepa qué correos se aceptan
+                errorEmail.textContent = "Solo se permiten correos institucionales (Duoc), Gmail, Hotmail o Clínicos.";
+                errorEmail.style.display = "block";
+            }
+            emailInput.style.borderColor = "#b3402c";
+            isValid = false;
+        }
     }
 
     if (passIngresada.length < 6) {
-        if (errorPassword) errorPassword.style.display = "block";
+        if (errorPassword) {
+            errorPassword.textContent = "La contraseña debe tener al menos 6 caracteres.";
+            errorPassword.style.display = "block";
+        }
         passwordInput.style.borderColor = "#b3402c";
         isValid = false;
     }

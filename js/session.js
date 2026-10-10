@@ -1,60 +1,45 @@
-const CLAVE_SESION = "nutrivida_sesion";
-
 document.addEventListener("DOMContentLoaded", () => {
-  const sesionGuardada = localStorage.getItem(CLAVE_SESION);
-  const linkAuth = document.getElementById("navAuthLink"); // El botón original
-  const navMenu = document.getElementById("navMenu");
-
-  if (!linkAuth || !navMenu) return;
-
-  if (sesionGuardada) {
-    const sesion = JSON.parse(sesionGuardada);
+    const navAuthLink = document.getElementById("navAuthLink");
+    const navMenu = document.getElementById("navMenu");
     
-    // Ocultamos el botón original de Iniciar Sesión
-    linkAuth.style.display = "none";
-    
-    // 1. Enlace a "Mis Citas"
-    const linkCitas = document.createElement("a");
-    linkCitas.href = "citas.html";
-    linkCitas.className = window.location.pathname.includes("citas.html") ? "navbar__link is-active" : "navbar__link";
-    linkCitas.textContent = "Mis Citas";
-    navMenu.appendChild(linkCitas);
+    const sesionGuardada = localStorage.getItem("nutrivida_sesion");
 
-    // 2. Enlace a "Panel Admin" (solo administradores)
-    if (sesion.esAdmin) {
-        const linkAdmin = document.createElement("a");
-        linkAdmin.href = "home-admin.html";
-        linkAdmin.className = "navbar__link";
-        linkAdmin.textContent = "Panel Admin";
-        linkAdmin.style.color = "var(--color-gold)";
-        linkAdmin.style.fontWeight = "bold";
-        navMenu.appendChild(linkAdmin);
+    if (sesionGuardada && navAuthLink) {
+        const sesion = JSON.parse(sesionGuardada);
+        
+        // 1. Detectar si el correo termina en el dominio de la clínica
+        const esDoctor = sesion.correo.toLowerCase().endsWith("@clinnutrivida.cl");
+        
+        // 2. Modificar el saludo
+        let saludo = `Hola, ${sesion.nombre}`;
+        if (sesion.esAdmin) {
+            saludo = "Hola, Administrador";
+        } else if (esDoctor) {
+            saludo = `Hola, Dr/a. ${sesion.nombre}`;
+        }
+
+        // 3. Crear los enlaces condicionales
+        let enlacesEspeciales = "";
+        
+        if (sesion.esAdmin) {
+            enlacesEspeciales = `<a href="home-admin.html" class="navbar__link" style="color: var(--color-sage); font-weight: 600;">Panel Admin</a>`;
+        } else if (esDoctor) {
+            enlacesEspeciales = `<a href="panel-doctor.html" class="navbar__link" style="color: var(--color-sage); font-weight: 600;">Control Citas</a>`;
+        } else {
+            enlacesEspeciales = `<a href="citas.html" class="navbar__link">Mis Citas</a>`;
+        }
+
+        // Reemplazar el botón de login por el menú de usuario conectado
+        navAuthLink.outerHTML = `
+            ${enlacesEspeciales}
+            <span class="navbar__link" style="font-weight: 500; cursor: default;">${saludo}</span>
+            <a href="#" id="btnCerrarSesionGlobal" class="navbar__link navbar__link--cta" style="background-color: #d9534f; color: white;">Cerrar sesión</a>
+        `;
+
+        document.getElementById("btnCerrarSesionGlobal").addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem("nutrivida_sesion");
+            window.location.href = "index.html";
+        });
     }
-
-    // 3. NUEVO: Enlace "Hola, [Nombre]" que lleva al perfil
-    const linkPerfil = document.createElement("a");
-    linkPerfil.href = "perfil.html";
-    linkPerfil.className = window.location.pathname.includes("perfil.html") ? "navbar__link is-active" : "navbar__link";
-    linkPerfil.textContent = `Hola, ${sesion.nombre}`;
-    linkPerfil.style.fontWeight = "600";
-    navMenu.appendChild(linkPerfil);
-
-    // 4. NUEVO: Botón de Cerrar Sesión separado
-    const btnLogout = document.createElement("a");
-    btnLogout.href = "#";
-    btnLogout.className = "navbar__link navbar__link--cta";
-    btnLogout.textContent = "Cerrar sesión";
-    btnLogout.style.backgroundColor = "#d9534f"; // Rojo sutil para diferenciar
-    btnLogout.style.borderColor = "#d9534f";
-    
-    btnLogout.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
-        localStorage.removeItem(CLAVE_SESION);
-        window.location.href = "index.html";
-      }
-    });
-    
-    navMenu.appendChild(btnLogout);
-  }
 });

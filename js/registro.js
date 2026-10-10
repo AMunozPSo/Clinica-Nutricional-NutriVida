@@ -93,9 +93,10 @@ form.addEventListener('submit', function(evento) {
         formularioValido = false;
     }
 
-    const correoRegex = /^[^\s@]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
+    // ACTUALIZACIÓN: Expresión regular con todos los dominios permitidos
+    const correoRegex = /^[^\s@]+@(duocuc\.cl|duoc\.cl|profesor\.duoc\.cl|gmail\.com|hotmail\.com|clinnutrivida\.cl)$/i;
     if (!correoRegex.test(inputCorreo.value)) {
-        errCorreo.textContent = "Solo se aceptan correos @duoc.cl, @profesor.duoc.cl o @gmail.com.";
+        errCorreo.textContent = "Solo se aceptan correos institucionales (Duoc), Gmail, Hotmail o Clínicos.";
         errCorreo.style.display = 'block';
         formularioValido = false;
     }
@@ -139,7 +140,8 @@ form.addEventListener('submit', function(evento) {
             direccion: inputDireccion.value.trim(),
             region: selectRegion.value,
             comuna: selectComuna.value,
-            rol: "paciente" 
+            // Si el correo es de la clínica, le asignamos rol de doctor automáticamente; sino, paciente.
+            rol: correoNormalizado.endsWith('@clinnutrivida.cl') ? 'doctor' : 'paciente' 
         });
         guardarUsuarios(usuarios);
 

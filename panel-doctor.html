@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Panel Médico</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-view">
+
+  <div class="dashboard-layout">
+    
+    <aside class="sidebar">
+      <h2>Portal Médico</h2>
+      <nav style="display: flex; flex-direction: column; height: 100%;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="panel-doctor.html" class="active">Control de Citas</a>
+        </div>
+        
+        <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" class="btn-logout" style="background-color: var(--color-sage); color: white; text-align: center;">Volver al Sitio</a>
+          <a href="#" id="btnCerrarSesionDoc" class="btn-logout" style="text-align: center;">Cerrar Sesión</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div style="margin-bottom: 20px;">
+        <h1 id="tituloDoctor">Mis Pacientes</h1>
+        <p style="color: #a0aec0;">Visualiza tu agenda de consultas. Los cambios de estado son gestionados por administración.</p>
+      </div>
+
+      <div style="overflow-x: auto; background-color: var(--color-admin-card); border-radius: 8px; border: 1px solid var(--color-admin-border);">
+        <table class="table-simple" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Fecha y Hora</th>
+              <th>Paciente</th>
+              <th>Servicio</th>
+              <th>Motivo de Consulta</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCitasDoctor">
+            <!-- JS inyectará las citas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/panel-doctor.js"></script>
+</body>
+</html>
