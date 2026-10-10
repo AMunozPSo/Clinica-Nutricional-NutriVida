@@ -17,14 +17,24 @@
 <body>
 
     <!-- Navbar -->
-    <header class="navbar">
-        <div class="navbar__logo">NutriVida</div>
-        <nav class="navbar__menu">
-            <a href="catalogo.html">Servicios</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-    </header>
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link is-active">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
 
     <!-- Contenido principal de la vista -->
     <main class="section">
@@ -105,5 +115,6 @@
 
     <!-- JS de la vista -->
     <script src="js/nosotros.js"></script>
+    <script src="js/session.js"></script> 
 </body>
 </html>
