@@ -1,7 +1,6 @@
 const CLAVE_SERVICIOS = "nutrivida_servicios";
 
 document.addEventListener("DOMContentLoaded", () => {
-    
     const sesionGuardada = localStorage.getItem("nutrivida_sesion");
     if (!sesionGuardada) {
         window.location.href = "login.html";
@@ -25,58 +24,77 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    inicializarServicios();
+    inicializarYRepararServicios(); 
     renderizarCatalogo();
-
-    document.getElementById("formServicio").addEventListener("submit", guardarServicio);
+    
+    const formServicio = document.getElementById("formServicio");
+    if(formServicio) {
+        formServicio.addEventListener("submit", guardarServicio);
+    }
 });
 
-function inicializarServicios() {
-    let servicios = localStorage.getItem(CLAVE_SERVICIOS);
-    if (!servicios) {
-        // NUEVO CATÁLOGO CON DOCTORES
-        const serviciosBase = [
+
+function inicializarYRepararServicios() {
+    let servicios = [];
+    
+
+    try {
+        servicios = JSON.parse(localStorage.getItem(CLAVE_SERVICIOS)) || [];
+    } catch (e) {
+
+        servicios = []; 
+    }
+
+    let necesitaGuardar = false;
+
+    if (servicios.length === 0) {
+        servicios = [
             { 
-                id: 1, 
-                nombre: "Nutrición Deportiva Avanzada", 
-                doctor: "Dr. Felipe Araya", 
-                descripcion: "Plan enfocado en maximizar el rendimiento atlético, aumento de masa muscular y recuperación.", 
-                precio: 45000 
+                id: 1, nombre: "Nutrición Deportiva Avanzada", doctor: "Dr. Felipe Araya", 
+                categoria: "planes", descripcion: "Plan enfocado en maximizar el rendimiento atlético, aumento de masa muscular y recuperación.", precio: 45000 
             },
             { 
-                id: 2, 
-                nombre: "Alimentación Basada en Plantas", 
-                doctor: "Dra. Antonia Muñoz", 
-                descripcion: "Asesoría para una transición segura a dietas veganas o vegetarianas sin déficit de nutrientes.", 
-                precio: 30000 
+                id: 2, nombre: "Alimentación Basada en Plantas", doctor: "Dra. Antonia Muñoz", 
+                categoria: "evaluaciones", descripcion: "Asesoría para una transición segura a dietas veganas o vegetarianas sin déficit de nutrientes.", precio: 30000 
             },
             { 
-                id: 3, 
-                nombre: "Programa de Psiconutrición", 
-                doctor: "Dra. Sofía Vergara", 
-                descripcion: "Abordaje integral de la relación con la comida, ansiedad y modificación de hábitos alimentarios.", 
-                precio: 50000 
-            },
-            { 
-                id: 4, 
-                nombre: "Control Nutricional Pediátrico", 
-                doctor: "Dr. Carlos Mendoza", 
-                descripcion: "Evaluación de crecimiento, peso y talla para niños, fomentando hábitos saludables en familia.", 
-                precio: 35000 
+                id: 3, nombre: "Programa de Psiconutrición", doctor: "Dra. Sofía Vergara", 
+                categoria: "planes", descripcion: "Abordaje integral de la relación con la comida, ansiedad y modificación de hábitos alimentarios.", precio: 50000 
             }
         ];
-        localStorage.setItem(CLAVE_SERVICIOS, JSON.stringify(serviciosBase));
+        necesitaGuardar = true;
+    } else {
+
+        servicios = servicios.map(s => {
+            if (!s.categoria) {
+                s.categoria = "evaluaciones"; 
+                necesitaGuardar = true;
+            }
+            return s;
+        });
+    }
+
+
+    if (necesitaGuardar) {
+        localStorage.setItem(CLAVE_SERVICIOS, JSON.stringify(servicios));
     }
 }
 
 function renderizarCatalogo() {
     const tbody = document.getElementById("tablaServiciosBody");
+    if (!tbody) return; 
+
     tbody.innerHTML = "";
 
-    const servicios = JSON.parse(localStorage.getItem(CLAVE_SERVICIOS) || "[]");
+    let servicios = [];
+    try {
+        servicios = JSON.parse(localStorage.getItem(CLAVE_SERVICIOS)) || [];
+    } catch(e) {
+        servicios = [];
+    }
 
     if (servicios.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay servicios registrados en el catálogo.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay servicios registrados en el catálogo.</td></tr>`;
         return;
     }
 
@@ -85,17 +103,18 @@ function renderizarCatalogo() {
     };
 
     servicios.forEach((servicio) => {
+        let catLabel = "Evaluaciones / Consultas";
+        if (servicio.categoria === "planes") catLabel = "Planes Especializados";
+        else if (servicio.categoria === "talleres") catLabel = "Talleres Grupales";
+
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td><strong>${servicio.nombre}</strong></td>
             <td><span style="background-color: var(--color-sage); color: white; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem;">${servicio.doctor || 'Sin asignar'}</span></td>
-            <td style="max-width: 250px; font-size: 0.9rem; color: #555;">
-                ${servicio.descripcion}
-            </td>
-            <td style="text-align: right; font-weight: bold; color: var(--color-forest);">
-                ${formatearCLP(servicio.precio)}
-            </td>
-            <td style="text-align: center;">
+            <td><span style="color: var(--color-4); font-weight: 500; font-size: 0.85rem;">${catLabel}</span></td>
+            <td style="max-width: 250px; font-size: 0.9rem; color: #555;">${servicio.descripcion}</td>
+            <td style="text-align: right; font-weight: bold; color: var(--color-forest);">${formatearCLP(servicio.precio)}</td>
+            <td style="text-align: center; min-width: 140px;">
                 <button class="btn btn--secondary" onclick="prepararEdicion(${servicio.id})" style="padding: 5px 10px; font-size: 0.8rem; margin-right: 5px;">Editar</button>
                 <button class="btn btn--primary" onclick="eliminarServicio(${servicio.id})" style="padding: 5px 10px; font-size: 0.8rem; background-color: #d9534f; border-color: #d9534f; color: white;">Eliminar</button>
             </td>
@@ -107,6 +126,7 @@ function renderizarCatalogo() {
 window.mostrarFormulario = function() {
     document.getElementById("formServicio").reset();
     document.getElementById("csId").value = "";
+    document.getElementById("csCategoria").value = "evaluaciones"; // Valor por defecto
     document.getElementById("tituloFormServicio").textContent = "Agregar Nuevo Servicio";
     document.getElementById("btnGuardarServicio").textContent = "Guardar Servicio";
     document.getElementById("contenedorFormServicio").style.display = "block";
@@ -124,13 +144,13 @@ window.prepararEdicion = function(id) {
         document.getElementById("csId").value = servicio.id;
         document.getElementById("csNombre").value = servicio.nombre;
         document.getElementById("csDoctor").value = servicio.doctor || ""; 
+        document.getElementById("csCategoria").value = servicio.categoria || "evaluaciones"; 
         document.getElementById("csPrecio").value = servicio.precio;
         document.getElementById("csDescripcion").value = servicio.descripcion;
         
         document.getElementById("tituloFormServicio").textContent = "Editar Servicio";
         document.getElementById("btnGuardarServicio").textContent = "Actualizar Servicio";
         document.getElementById("contenedorFormServicio").style.display = "block";
-        
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 };
@@ -141,6 +161,7 @@ function guardarServicio(e) {
     const idInput = document.getElementById("csId").value;
     const nombre = document.getElementById("csNombre").value.trim();
     const doctor = document.getElementById("csDoctor").value.trim(); 
+    const categoria = document.getElementById("csCategoria").value; 
     const precio = parseInt(document.getElementById("csPrecio").value, 10);
     const descripcion = document.getElementById("csDescripcion").value.trim();
     
@@ -148,12 +169,12 @@ function guardarServicio(e) {
 
     if (idInput === "") {
         const nuevoId = servicios.length > 0 ? Math.max(...servicios.map(s => s.id)) + 1 : 1;
-        servicios.push({ id: nuevoId, nombre, doctor, precio, descripcion });
+        servicios.push({ id: nuevoId, nombre, doctor, categoria, precio, descripcion });
     } else {
         const idEdit = parseInt(idInput, 10);
         const index = servicios.findIndex(s => s.id === idEdit);
         if (index !== -1) {
-            servicios[index] = { id: idEdit, nombre, doctor, precio, descripcion };
+            servicios[index] = { id: idEdit, nombre, doctor, categoria, precio, descripcion };
         }
     }
 

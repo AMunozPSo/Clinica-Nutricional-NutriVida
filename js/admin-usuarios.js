@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Lógica para crear paciente manualmente
     const formNP = document.getElementById("formNuevoPaciente");
     if (formNP) {
         formNP.addEventListener("submit", function(e) {
@@ -40,20 +39,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Error: Ya existe una cuenta con este correo electrónico.");
                 return;
             }
+            const rolAsignado = correo.endsWith("@clinnutrivida.cl") ? "medico" : "paciente";
 
             usuarios.push({
                 nombre: nombre,
                 run: run,
                 correo: correo,
                 password: password,
-                rol: "paciente", 
+                rol: rolAsignado, 
                 region: "", 
                 comuna: "",
                 telefono: ""
             });
             
             localStorage.setItem("nutrivida_usuarios", JSON.stringify(usuarios));
-            alert(`Paciente ${nombre} registrado con éxito.\nContraseña temporal: ${password}`);
+            alert(`Usuario ${nombre} registrado con éxito.\nContraseña temporal: ${password}`);
             
             formNP.reset();
             toggleFormNuevoPaciente();
@@ -75,8 +75,7 @@ function renderizarTablaUsuarios() {
 
     const usuarios = JSON.parse(localStorage.getItem("nutrivida_usuarios") || "[]");
     const carritoGlobal = JSON.parse(localStorage.getItem("nutrivida_carrito") || "[]");
-    
-    // --- LÓGICA DE SUPER ADMINS ---
+
     const ADMIN_CORREOS_BASE = ["anto.munozp@duocuc.cl", "feli.arayah@duocuc.cl"];
     const sesionActual = JSON.parse(localStorage.getItem("nutrivida_sesion"));
     const yoSoySuperAdmin = ADMIN_CORREOS_BASE.includes(sesionActual.correo);
@@ -91,34 +90,39 @@ function renderizarTablaUsuarios() {
         
         const esSuperAdmin = ADMIN_CORREOS_BASE.includes(usuario.correo);
         const esAdminRegular = usuario.rol === "admin" && !esSuperAdmin;
-        const esCualquierAdmin = esSuperAdmin || esAdminRegular;
         
-        const etiquetaRol = esSuperAdmin ? '<span style="color: var(--color-gold); font-weight: bold;">Super Admin</span>' 
-                          : esAdminRegular ? '<span style="color: #4a90e2; font-weight: bold;">Admin</span>' 
-                          : 'Paciente';
+
+        const esMedico = usuario.rol === "medico" || (usuario.correo && usuario.correo.toLowerCase().endsWith("@clinnutrivida.cl"));
+        
+        let etiquetaRol = 'Paciente';
+        if (esSuperAdmin) {
+            etiquetaRol = '<span style="color: var(--color-gold); font-weight: bold;">Super Admin</span>';
+        } else if (esAdminRegular) {
+            etiquetaRol = '<span style="color: #4a90e2; font-weight: bold;">Admin</span>';
+        } else if (esMedico) {
+            etiquetaRol = '<span style="color: var(--color-forest); font-weight: bold; background-color: rgba(62, 124, 114, 0.1); padding: 3px 8px; border-radius: 12px; font-size: 0.85rem;">Médico Especialista</span>';
+        }
 
         let botones = '';
-
-        // Definir qué botones veo según MI rol y el rol de la FILA
         if (esSuperAdmin) {
-            // Nadie puede tocar a los Super Admins
+
             botones = '<span style="color: gray; font-size: 0.85rem;">Intocable</span>';
         } else if (esAdminRegular) {
             if (yoSoySuperAdmin) {
-                // Si soy Super Admin, puedo quitarle el rango a un Admin Regular o eliminarlo
+
                 botones += `<button class="btn btn--secondary" onclick="quitarAdmin('${usuario.correo}')" style="padding: 5px 10px; font-size: 0.8rem; margin-right: 5px;">Quitar Admin</button>`;
                 botones += `<button class="btn btn--primary" onclick="eliminarUsuario('${usuario.correo}')" style="padding: 5px 10px; font-size: 0.8rem; background-color: #d9534f; border-color: #d9534f; color: white;">Eliminar</button>`;
             } else {
-                // Si soy Admin Regular, no puedo tocar a otros Admins
+
                 botones = '<span style="color: gray; font-size: 0.85rem;">Protegido</span>';
             }
         } else {
-            // Es un paciente normal
+
             if (yoSoySuperAdmin) {
-                // Solo los Super Admins pueden dar el rol
+
                 botones += `<button class="btn btn--secondary" onclick="hacerAdmin('${usuario.correo}')" style="padding: 5px 10px; font-size: 0.8rem; margin-right: 5px;">Hacer Admin</button>`;
             }
-            // Cualquier admin puede eliminar a un paciente normal
+
             botones += `<button class="btn btn--primary" onclick="eliminarUsuario('${usuario.correo}')" style="padding: 5px 10px; font-size: 0.8rem; background-color: #d9534f; border-color: #d9534f; color: white;">Eliminar</button>`;
         }
 
@@ -147,11 +151,11 @@ window.hacerAdmin = function(correo) {
 };
 
 window.quitarAdmin = function(correo) {
-    if (confirm(`¿Revocar privilegios de administrador a ${correo}? Volverá a ser paciente.`)) {
+    if (confirm(`¿Revocar privilegios de administrador a ${correo}?`)) {
         let usuarios = JSON.parse(localStorage.getItem("nutrivida_usuarios") || "[]");
         const index = usuarios.findIndex(u => u.correo === correo);
         if (index !== -1) {
-            usuarios[index].rol = "paciente";
+            usuarios[index].rol = correo.endsWith("@clinnutrivida.cl") ? "medico" : "paciente";
             localStorage.setItem("nutrivida_usuarios", JSON.stringify(usuarios));
             renderizarTablaUsuarios(); 
         }

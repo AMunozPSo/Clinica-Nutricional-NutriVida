@@ -55,10 +55,19 @@
                 <input type="text" id="csNombre" placeholder="Ej: Evaluación Nutricional" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
             </div>
             
-            <!-- NUEVO CAMPO: DOCTOR -->
             <div style="flex: 2; min-width: 200px;">
                 <label style="display: block; margin-bottom: 5px; font-weight: 500;">Especialista a Cargo</label>
                 <input type="text" id="csDoctor" placeholder="Ej: Dra. Antonia Muñoz" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+
+
+            <div style="flex: 1.5; min-width: 150px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Categoría</label>
+                <select id="csCategoria" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                    <option value="evaluaciones">Evaluaciones / Consultas</option>
+                    <option value="planes">Planes Especializados</option>
+                    <option value="talleres">Talleres Grupales</option>
+                </select>
             </div>
 
             <div style="flex: 1; min-width: 120px;">
@@ -79,20 +88,21 @@
         </form>
       </div>
 
-      <!-- TABLA -->
+  
       <div style="overflow-x: auto; background-color: var(--color-admin-card); border-radius: 8px; border: 1px solid var(--color-admin-border);">
         <table class="table-simple" style="margin-top: 0;">
           <thead>
             <tr>
               <th>Servicio</th>
               <th>Especialista</th>
+              <th>Categoría</th> 
               <th>Descripción</th>
               <th style="text-align: right;">Precio</th>
               <th style="text-align: center;">Acciones</th>
             </tr>
           </thead>
           <tbody id="tablaServiciosBody">
-            <!-- JS inyectará los servicios aquí -->
+
           </tbody>
         </table>
       </div>

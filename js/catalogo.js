@@ -1,6 +1,4 @@
-// Variable global que ahora se llenará dinámicamente
 let SERVICIOS = [];
-
 const formatoCLP = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
 
 const estadoFiltro = {
@@ -10,10 +8,7 @@ const estadoFiltro = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Cargamos los datos desde la base de datos del Admin
   cargarServiciosDesdeAdmin();
-  
-  // 2. Renderizamos y activamos los filtros
   renderCatalogo();
   initFiltros();
   initBuscador();
@@ -23,14 +18,20 @@ function cargarServiciosDesdeAdmin() {
     const serviciosAdmin = JSON.parse(localStorage.getItem("nutrivida_servicios"));
 
     if (serviciosAdmin && serviciosAdmin.length > 0) {
-        // Si el admin ha creado servicios, los adaptamos para la vista pública
         SERVICIOS = serviciosAdmin.map(s => {
+            
+            let catLabel = "Evaluación";
+            if(s.categoria === "planes") catLabel = "Plan Especializado";
+            else if(s.categoria === "talleres") catLabel = "Taller Grupal";
+            else if(s.categoria === "evaluaciones") catLabel = "Evaluaciones / Consultas";
+
             return {
-                codigo: s.id, // Usamos el ID como código para agendar
-                categoria: "Consulta", // Categoría por defecto para que funcionen los filtros
+                codigo: s.id, 
+                categoriaId: s.categoria || "evaluaciones", 
+                categoria: catLabel, 
                 nombre: s.nombre,
-                doctor: s.doctor, // Capturamos al especialista
-                duracion: "45 min", // Valor referencial
+                doctor: s.doctor, 
+                duracion: "45 min", 
                 modalidad: "presencial",
                 modalidadLabel: "Presencial",
                 precio: s.precio,
@@ -39,7 +40,6 @@ function cargarServiciosDesdeAdmin() {
             };
         });
     } else {
-        // Si la base de datos está vacía, mostramos un mensaje de error o dejamos el arreglo vacío
         SERVICIOS = [];
     }
 }
@@ -76,13 +76,30 @@ function initBuscador() {
 
 function filtrarServicios() {
   return SERVICIOS.filter((servicio) => {
-    const coincideCategoria = estadoFiltro.categoria === "todos" || servicio.categoria === estadoFiltro.categoria;
+    const filtroCat = estadoFiltro.categoria.toLowerCase();
+    const sCat = (servicio.categoriaId || "").toLowerCase();
+
+ 
+    let coincideCategoria = false;
+    if (filtroCat === "todos" || filtroCat === "") {
+        coincideCategoria = true;
+    } else if (filtroCat.includes("plan") && sCat.includes("plan")) {
+        coincideCategoria = true; 
+    } else if ((filtroCat.includes("evaluacion") || filtroCat.includes("consulta")) && sCat.includes("evaluacion")) {
+        coincideCategoria = true; 
+    } else if (filtroCat.includes("taller") && sCat.includes("taller")) {
+        coincideCategoria = true;
+    } else {
+        coincideCategoria = (sCat === filtroCat);
+    }
+
     const coincideModalidad = estadoFiltro.modalidad === "todos" || servicio.modalidad === estadoFiltro.modalidad;
+    
     const coincideTexto =
       estadoFiltro.texto === "" ||
       servicio.nombre.toLowerCase().includes(estadoFiltro.texto) ||
       servicio.descripcion.toLowerCase().includes(estadoFiltro.texto) ||
-      (servicio.doctor && servicio.doctor.toLowerCase().includes(estadoFiltro.texto)); // Permite buscar por doctor
+      (servicio.doctor && servicio.doctor.toLowerCase().includes(estadoFiltro.texto));
 
     return coincideCategoria && coincideModalidad && coincideTexto;
   });
@@ -111,9 +128,8 @@ function crearTarjetaServicio(servicio) {
   const card = document.createElement("article");
   card.className = "card";
 
-  // Destacamos al doctor si existe, de lo contrario mostramos la duración
   const infoEspecialista = servicio.doctor 
-      ? `👨‍⚕️ Especialista: <strong>${servicio.doctor}</strong>` 
+      ? `Especialista: <strong>${servicio.doctor}</strong>` 
       : `${servicio.duracion} · ${servicio.modalidadLabel}`;
       
   const cuposTag = servicio.cuposLimitados ? `<span class="servicio-card__cupos">Cupos limitados</span>` : "";
@@ -131,6 +147,5 @@ function crearTarjetaServicio(servicio) {
       <a href="solicitud-cita.html?codigo=${servicio.codigo}" class="btn btn--primary" style="width: 100%; text-align: center;">Agendar Especialista</a>
     </div>
   `;
-
   return card;
 }
