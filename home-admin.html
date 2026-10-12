@@ -15,8 +15,7 @@
 <body class="admin-view">
 
   <div class="dashboard-layout">
-    
-    <!-- Menú Lateral -->
+
     <aside class="sidebar">
       <h2>NutriVida Admin</h2>
       
@@ -28,8 +27,7 @@
           <a href="gestor-citas.html">Gestor de Citas</a>
           <a href="admin-reportes.html">Reportes</a>
         </div>
-        
-        <!-- Aquí agregamos los botones de Ver Sitio y Cerrar Sesión -->
+
         <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 10px;">
           <a href="index.html" class="btn-logout" style="background-color: var(--color-sage); color: white; text-align: center;">Ver Sitio Web</a>
           <a href="#" id="btnCerrarSesionAdmin" class="btn-logout" style="text-align: center;">Cerrar Sesión</a>
@@ -37,12 +35,10 @@
       </nav>
     </aside>
 
-    <!-- Contenido Principal -->
     <main class="main-content">
       <h1 id="saludoAdmin">Bienvenido, Administrador</h1>
       <p style="color: #a0aec0; margin-bottom: 30px;">Aquí tienes el resumen de actividad de la clínica del día de hoy.</p>
-      
-      <!-- Métricas Rápidas -->
+
       <div class="metrics-grid">
         <div class="metric-card">
           <h3>Citas Programadas (Hoy)</h3>
@@ -58,7 +54,6 @@
         </div>
       </div>
 
-      <!-- Resumen de Actividad Reciente -->
       <section class="citas-section">
         <h2>Próximas Citas (Generales)</h2>
         
@@ -73,9 +68,14 @@
               </tr>
             </thead>
             <tbody id="tablaProximasCitas">
-              <!-- JS inyectará las filas aquí -->
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="mensajes-section" style="margin-top: 40px;">
+        <h2>Bandeja de Mensajes (Contacto)</h2>
+        <div id="contenedor-mensajes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
         </div>
       </section>
 

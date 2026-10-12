@@ -1,6 +1,3 @@
-// Vista Contacto: validación de formulario + mapa con Leaflet
-
-// --- Dominios de correo permitidos (mismos que login/registro) ---
 const DOMINIOS_PERMITIDOS = ["duoc.cl", "profesor.duoc.cl", "gmail.com"];
 
 const form = document.getElementById("form-contacto");
@@ -56,18 +53,27 @@ form.addEventListener("submit", (e) => {
   mensajeExito.hidden = true;
 
   if (!validarFormulario()) return;
+  let mensajes = JSON.parse(localStorage.getItem('nutrivida_mensajes')) || [];
+  const nuevoMensaje = {
+      id: Date.now(), 
+      fecha: new Date().toLocaleDateString('es-CL'), 
+      nombre: inputNombre.value.trim(),
+      correo: inputCorreo.value.trim(),
+      comentario: inputComentario.value.trim()
+  };
 
-  
+  mensajes.push(nuevoMensaje);
+  localStorage.setItem('nutrivida_mensajes', JSON.stringify(mensajes));
+
   mensajeExito.hidden = false;
   form.reset();
+  setTimeout(() => {
+      mensajeExito.hidden = true;
+  }, 4000);
 });
 
-// --- Mapa con Leaflet ---
-// Coordenadas de ejemplo: centro de Temuco, Chile
 const COORDENADAS_CLINICA = [-38.7397, -72.5977];
-
 const mapa = L.map("mapa").setView(COORDENADAS_CLINICA, 15);
-
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "&copy; OpenStreetMap contributors",
   maxZoom: 19,

@@ -1,6 +1,29 @@
+
+function cargarMensajesContacto() {
+    const contenedor = document.getElementById('contenedor-mensajes');
+    if (!contenedor) return;
+
+    const mensajes = JSON.parse(localStorage.getItem('nutrivida_mensajes')) || [];
+
+    if (mensajes.length === 0) {
+        contenedor.innerHTML = '<p class="text-muted" style="grid-column: 1 / -1;">No hay mensajes nuevos en la bandeja.</p>';
+        return;
+    }
+
+    contenedor.innerHTML = mensajes.reverse().map(msg => `
+        <div class="card" style="padding: 15px; border-left: 4px solid var(--color-1); background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <strong style="color: var(--color-4);">${msg.nombre}</strong>
+                <span style="font-size: 0.8rem; color: #a0aec0;">${msg.fecha}</span>
+            </div>
+            <a href="mailto:${msg.correo}" style="color: var(--color-3); font-size: 0.85rem; text-decoration: none; display: block; margin-bottom: 10px;">${msg.correo}</a>
+            <p style="font-size: 0.95rem; color: #4a5568; line-height: 1.4; word-wrap: break-word;">${msg.comentario}</p>
+        </div>
+    `).join('');
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Proteger la ruta: Verificar si el usuario logueado es admin
     const sesionGuardada = localStorage.getItem("nutrivida_sesion");
     if (!sesionGuardada) {
         window.location.href = "login.html";
@@ -13,10 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Saludo personalizado
     document.getElementById("saludoAdmin").textContent = `Bienvenido, ${sesion.nombre}`;
 
-// Lógica para cerrar sesión
     const btnCerrar = document.getElementById("btnCerrarSesionAdmin");
     if (btnCerrar) {
         btnCerrar.addEventListener("click", (e) => {
@@ -28,56 +49,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Extraer datos del LocalStorage
     const usuarios = JSON.parse(localStorage.getItem("nutrivida_usuarios") || "[]");
     const carritoGlobal = JSON.parse(localStorage.getItem("nutrivida_carrito") || "[]");
 
-    // Fecha de hoy en formato YYYY-MM-DD
     const hoy = new Date().toISOString().split('T')[0];
 
-    // --- CÁLCULO DE MÉTRICAS ---
-    
-    // A) Citas de hoy (que no estén canceladas)
     const citasHoy = carritoGlobal.filter(cita => cita.fecha === hoy && cita.estado !== "Cancelada").length;
     document.getElementById("metricaCitasHoy").textContent = citasHoy;
 
-    // B) Total de Pacientes (Excluimos a los que tienen correos de admin)
     const ADMIN_CORREOS = ["anto.munozp@duocuc.cl", "feli.arayah@duocuc.cl"];
     const totalPacientes = usuarios.filter(u => !ADMIN_CORREOS.includes(u.correo)).length;
     document.getElementById("metricaPacientes").textContent = totalPacientes;
 
-    // C) Planes Alimenticios (citas donde el servicio contiene la palabra "Plan")
     const planesActivos = carritoGlobal.filter(cita => 
         cita.servicio.toLowerCase().includes("plan") && cita.estado !== "Cancelada"
     ).length;
     document.getElementById("metricaPlanes").textContent = planesActivos;
 
-    // --- TABLA DE PRÓXIMAS CITAS ---
     const tbodyCitas = document.getElementById("tablaProximasCitas");
     tbodyCitas.innerHTML = "";
 
-    // Filtramos citas desde hoy en adelante
     let proximasCitas = carritoGlobal.filter(cita => cita.fecha >= hoy && cita.estado !== "Cancelada");
-    
-    // Ordenamos por fecha y hora
+
     proximasCitas.sort((a, b) => {
         const fechaHoraA = new Date(`${a.fecha}T${a.horario}`);
         const fechaHoraB = new Date(`${b.fecha}T${b.horario}`);
         return fechaHoraA - fechaHoraB;
     });
 
-    // Mostramos solo las primeras 5 para no saturar el resumen
     const topCitas = proximasCitas.slice(0, 5);
 
     if (topCitas.length === 0) {
         tbodyCitas.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 20px;">No hay citas programadas próximamente.</td></tr>`;
     } else {
         topCitas.forEach(cita => {
-            // Buscamos el nombre del paciente cruzando el correo con la base de usuarios
+
             const pacienteRef = usuarios.find(u => u.correo === cita.correo_usuario);
             const nombrePaciente = pacienteRef ? pacienteRef.nombre : cita.correo_usuario;
 
-            // Damos color al estado
             let claseEstado = "status-pendiente";
             if (cita.estado === "Confirmada") claseEstado = "status-confirmada";
 
@@ -91,4 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
             tbodyCitas.appendChild(fila);
         });
     }
+
+    cargarMensajesContacto();
 });
