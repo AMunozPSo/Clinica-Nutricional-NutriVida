@@ -52,28 +52,53 @@
       <h2 class="seccion-titulo">¿Cómo te acompañamos?</h2>
       
       <div class="servicios-grid">
+        <!-- Tarjeta 1: Evaluación Inicial (Abre Modal) -->
         <article class="tarjeta-servicio">
           <h3>Evaluación Inicial</h3>
           <p>Anamnesis completa y antropometría para diseñar tu primer plan alimenticio a la medida de tu cuerpo y rutina.</p>
-          <a href="detalle-servicio.html" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
+          <a href="#" id="btn-evaluacion" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
         </article>
 
+        <!-- Tarjeta 2: Nutrición Deportiva -->
         <article class="tarjeta-servicio">
           <h3>Nutrición Deportiva</h3>
           <p>Estrategias de alimentación e hidratación enfocadas en mejorar tu rendimiento físico y lograr tus metas atléticas.</p>
-          <a href="detalle-servicio.html" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
+          <a href="#" id="link-deportiva" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
         </article>
 
+        <!-- Tarjeta 3: Planes Veganos -->
         <article class="tarjeta-servicio">
           <h3>Planes Veganos</h3>
           <p>Transición segura y equilibrada hacia dietas basadas en plantas, asegurando todos los micronutrientes necesarios.</p>
-          <a href="detalle-servicio.html" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
+          <a href="#" id="link-vegana" style="color: var(--color-4); font-weight: 600; text-decoration: none;">Ver detalle →</a>
         </article>
       </div>
     </section>
 
   </main>
 
+ 
+  <div id="modal-evaluacion" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+      <h2 style="margin-top: 0; color: var(--color-5);">Elige tu Evaluación Inicial</h2>
+      <p style="color: #555; margin-bottom: 20px;">Contamos con dos modalidades especializadas según la etapa de vida:</p>
+      
+  
+      <a href="#" id="modal-link-pediatrica" style="display: block; margin-bottom: 15px; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; text-decoration: none; cursor: pointer; background-color: #f8fafc;">
+        <h3 style="margin: 0 0 8px 0; color: var(--color-5); font-size: 1.1rem;">Evaluación Pediátrica</h3>
+        <p style="font-size: 0.9rem; color: #666; margin: 0; line-height: 1.4;">Enfocada en el crecimiento y desarrollo saludable desde la primera infancia hasta la adolescencia.</p>
+      </a>
+
+      <a href="#" id="modal-link-adulto" style="display: block; margin-bottom: 20px; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; text-decoration: none; cursor: pointer; background-color: #f8fafc;">
+        <h3 style="margin: 0 0 8px 0; color: var(--color-5); font-size: 1.1rem;">Evaluación Adultos</h3>
+        <p style="font-size: 0.9rem; color: #666; margin: 0; line-height: 1.4;">Diseñada para mejorar tu composición corporal, prevenir enfermedades y aprender a comer equilibrado.</p>
+      </a>
+
+      <div style="text-align: right;">
+        <button onclick="document.getElementById('modal-evaluacion').style.display='none'" style="background: transparent; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 6px; cursor: pointer; color: #475569; font-weight: 500;">Cerrar ventana</button>
+      </div>
+    </div>
+  </div>
   <!-- Footer global -->
   <footer class="footer">
     <div class="contenedor">
@@ -85,5 +110,6 @@
 
   <script src="js/main.js"></script>
   <script src="js/session.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
