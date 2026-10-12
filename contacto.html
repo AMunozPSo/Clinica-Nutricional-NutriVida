@@ -4,34 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - NutriVida</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Leaflet CSS (única librería externa permitida, solo en esta vista) -->
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin="">
 
-    <!-- CSS Global -->
     <link rel="stylesheet" href="css/global.css">
-    <!-- CSS Específico de esta vista -->
+
     <link rel="stylesheet" href="css/contacto.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="navbar__logo">NutriVida</div>
-        <nav class="navbar__menu">
-            <a href="catalogo.html">Servicios</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-    </header>
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
 
-    <!-- Contenido principal de la vista -->
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link is-active">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
     <main class="section">
         <div class="container">
             <h1 class="text-center">Contáctanos</h1>
@@ -39,7 +45,7 @@
 
             <div class="contacto-grid">
 
-                <!-- Formulario -->
+
                 <form id="form-contacto" class="form" novalidate>
                     <div class="form__field">
                         <label for="nombre">Nombre completo</label>
@@ -66,7 +72,7 @@
                     </p>
                 </form>
 
-                <!-- Mapa -->
+
                 <div class="mapa-container">
                     <div id="mapa" aria-label="Mapa con la ubicación de la clínica NutriVida"></div>
                     <p class="text-muted">Av. Alemania 671, Temuco, Región de La Araucanía.</p>
@@ -76,17 +82,17 @@
         </div>
     </main>
 
-    <!-- Footer-->
     <footer class="footer">
         <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Leaflet JS (antes de nuestro script, porque contacto.js lo necesita) -->
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-    <!-- JS de la vista -->
+
     <script src="js/contacto.js"></script>
+    <script src="js/session.js"></script>
 </body>
 </html>
