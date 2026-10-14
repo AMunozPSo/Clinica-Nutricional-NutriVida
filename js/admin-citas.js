@@ -34,7 +34,8 @@ function renderizarCitas() {
     const tbody = document.getElementById("tablaCitasBody");
     tbody.innerHTML = "";
 
-    let citas = JSON.parse(localStorage.getItem("nutrivida_carrito") || "[]");
+    // AHORA SÍ BUSCA EN LA BASE DE DATOS CORRECTA
+    let citas = JSON.parse(localStorage.getItem("nutrivida_citas") || "[]");
 
     if (citas.length === 0) {
         tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px;">No hay citas agendadas en el sistema.</td></tr>`;
@@ -51,28 +52,18 @@ function renderizarCitas() {
         
         const indexOriginal = (citas.length - 1) - indexRealInvertido;
 
-        const matchTexto = (cita.nombre_usuario || "").toLowerCase().includes(textoFiltro) || 
-                           (cita.correo_usuario || "").toLowerCase().includes(textoFiltro);
+        // Variables actualizadas para coincidir con el nuevo formato de agendamiento
+        const nombrePaciente = cita.pacienteNombre || cita.nombre_usuario || "";
+        const correoPaciente = cita.pacienteCorreo || cita.correo_usuario || "";
+
+        const matchTexto = nombrePaciente.toLowerCase().includes(textoFiltro) || 
+                           correoPaciente.toLowerCase().includes(textoFiltro);
         const matchEstado = estadoFiltro === "Todos" || cita.estado === estadoFiltro;
 
         if (!matchTexto || !matchEstado) return;
 
-        // Extractor inteligente de Fecha y Hora
         let fechaMostrada = cita.fecha || 'Sin fecha';
-        let horaMostrada = cita.hora || cita.horario || cita.time || '';
-
-        // Si la fecha y hora vienen juntas (ej: 2026-10-12T10:00)
-        if (fechaMostrada.includes('T')) {
-            const partes = fechaMostrada.split('T');
-            fechaMostrada = partes[0];
-            if (!horaMostrada) horaMostrada = partes[1];
-        } else if (fechaMostrada.includes(' ')) {
-            const partes = fechaMostrada.split(' ');
-            fechaMostrada = partes[0];
-            if (!horaMostrada) horaMostrada = partes[1];
-        }
-
-        horaMostrada = horaMostrada || 'Por coordinar';
+        let horaMostrada = cita.hora || cita.horario || 'Por coordinar';
 
         let colorEstado = "#f0ad4e"; 
         if (cita.estado === "Completada") colorEstado = "#5cb85c"; 
@@ -89,11 +80,13 @@ function renderizarCitas() {
             </select>
         `;
 
+        const nombreServicio = cita.servicioNombre || cita.nombre || 'Servicio Nutricional';
+
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td><strong>${fechaMostrada}</strong><br><small>${horaMostrada}</small></td>
-            <td><strong>${cita.nombre_usuario || 'Paciente'}</strong><br><small style="color: #666;">${cita.correo_usuario}</small></td>
-            <td>${cita.nombre || 'Servicio Nutricional'}</td>
+            <td><strong>${nombrePaciente || 'Paciente'}</strong><br><small style="color: #666;">${correoPaciente}</small></td>
+            <td>${nombreServicio}</td>
             <td>${etiquetaEstado}</td>
             <td>${selectEstado}</td>
         `;
@@ -103,11 +96,12 @@ function renderizarCitas() {
 
 window.cambiarEstadoCita = function(indexOriginal, nuevoEstado) {
     if (confirm(`¿Seguro que deseas cambiar el estado de esta cita a ${nuevoEstado}?`)) {
-        let citas = JSON.parse(localStorage.getItem("nutrivida_carrito") || "[]");
+        // ACTUALIZACIÓN DE ESTADO EN LA BASE CORRECTA
+        let citas = JSON.parse(localStorage.getItem("nutrivida_citas") || "[]");
         
         if (citas[indexOriginal]) {
             citas[indexOriginal].estado = nuevoEstado;
-            localStorage.setItem("nutrivida_carrito", JSON.stringify(citas));
+            localStorage.setItem("nutrivida_citas", JSON.stringify(citas));
             renderizarCitas(); 
         }
     } else {

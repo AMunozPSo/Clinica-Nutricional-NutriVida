@@ -4,7 +4,7 @@ function renderizarCitas() {
     const citasBody = document.getElementById('citasBody');
     citasBody.innerHTML = ''; 
     
-    // 1. Revisar quién está logueado
+
     const sesionGuardada = localStorage.getItem("nutrivida_sesion");
     if (!sesionGuardada) {
         citasBody.innerHTML = '<tr><td colspan="5" class="text-center">Debes iniciar sesión para ver tus citas.</td></tr>';
@@ -12,25 +12,24 @@ function renderizarCitas() {
     }
     const miCorreo = JSON.parse(sesionGuardada).correo;
 
-    // 2. Traer el carrito global
-    let carritoGlobal = [];
-    const dataGuardada = localStorage.getItem("nutrivida_carrito");
+
+    let citasGlobales = [];
+    const dataGuardada = localStorage.getItem("nutrivida_citas");
     if (dataGuardada) {
-        carritoGlobal = JSON.parse(dataGuardada);
+        citasGlobales = JSON.parse(dataGuardada);
     }
 
-    // 3. Filtrar solo mis citas
-    const misCitas = carritoGlobal.filter(cita => cita.correo_usuario === miCorreo);
+ 
+    const misCitas = citasGlobales.filter(cita => cita.pacienteCorreo === miCorreo);
 
     if (misCitas.length === 0) {
-        citasBody.innerHTML = '<tr><td colspan="5" class="text-center" style="padding: 2rem;">No tienes citas registradas en tu carrito.</td></tr>';
+        citasBody.innerHTML = '<tr><td colspan="5" class="text-center" style="padding: 2rem;">No tienes citas registradas.</td></tr>';
         return;
     }
 
-    // Opcional: Ordenar las citas por fecha para que se vean más ordenadas
     misCitas.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
 
-    // 4. Dibujar la tabla
+
     misCitas.forEach(cita => {
         const fila = document.createElement('tr');
         
@@ -44,12 +43,11 @@ function renderizarCitas() {
             botones = '<span style="color: gray; font-style: italic;">Sin acciones</span>';
         }
 
-        // Asumimos presencial ya que no lo pedimos en el nuevo form
         const modalidad = cita.modalidad || 'Presencial';
 
         fila.innerHTML = `
-            <td>${cita.fecha}<br><small>${cita.horario}</small></td>
-            <td><strong>${cita.servicio}</strong><br><small style="color: var(--color-text-soft);">${cita.nutricionista}</small></td>
+            <td>${cita.fecha}<br><small>${cita.hora}</small></td>
+            <td><strong>${cita.servicioNombre}</strong><br><small style="color: var(--color-text-soft);">${cita.doctor}</small></td>
             <td>${modalidad}</td>
             <td><strong>${cita.estado}</strong></td>
             <td>${botones}</td>
@@ -58,18 +56,17 @@ function renderizarCitas() {
     });
 }
 
-// 5. Lógica real para cancelar citas
 window.cancelarCita = function(id) {
     if (confirm('¿Estás seguro de que deseas cancelar esta cita? Al hacerlo, liberarás el horario.')) {
         
-        let carritoGlobal = JSON.parse(localStorage.getItem("nutrivida_carrito") || "[]");
+        let citasGlobales = JSON.parse(localStorage.getItem("nutrivida_citas") || "[]");
         
-        const citaIndex = carritoGlobal.findIndex(c => c.id === id);
+        const citaIndex = citasGlobales.findIndex(c => c.id === id);
         if (citaIndex !== -1) {
-            carritoGlobal[citaIndex].estado = 'Cancelada';
-            localStorage.setItem("nutrivida_carrito", JSON.stringify(carritoGlobal));
+            citasGlobales[citaIndex].estado = 'Cancelada';
+            localStorage.setItem("nutrivida_citas", JSON.stringify(citasGlobales));
             
-            // Volvemos a dibujar la tabla para que se actualice al instante
+
             renderizarCitas(); 
         }
     }

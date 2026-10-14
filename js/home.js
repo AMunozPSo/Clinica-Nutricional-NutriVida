@@ -1,26 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const servicios = JSON.parse(localStorage.getItem("nutrivida_servicios") || "[]");
     
-    const obtenerId = (nombreExacto) => {
-        const servicio = servicios.find(s => s.nombre === nombreExacto);
-        return servicio ? servicio.id : "";
-    };
+    setTimeout(() => {
 
-    // Identificadores de los servicios (DEBEN coincidir exactamente con los nombres en el panel admin)
-    const idPediatrica = obtenerId("Evaluación Nutricional Pediátrica");
-    const idAdulto = obtenerId("Evaluación Nutricional Integral del Adulto");
-    const idDeportiva = obtenerId("Plan de Nutrición para Deportistas");
-    const idVegana = obtenerId("Plan de Control de Peso 100% Plant-Based");
+        const servicios = JSON.parse(localStorage.getItem("nutrivida_servicios") || "[]");
+        
+ 
+        const btnPediatrica = document.getElementById("modal-link-pediatrica");
+        if(btnPediatrica && servicios.length > 0) {
+            btnPediatrica.href = `solicitud-cita.html?servicio=${servicios[0].id}`;
+        }
 
-    // Conectar enlaces directos (Tarjetas 2 y 3)
-    if(idDeportiva) document.getElementById("link-deportiva").href = `detalle-servicio.html?id=${idDeportiva}`;
-    if(idVegana) document.getElementById("link-vegana").href = `detalle-servicio.html?id=${idVegana}`;
+ 
+        const btnAdulto = document.getElementById("modal-link-adulto");
+        if(btnAdulto && servicios.length > 1) {
+            btnAdulto.href = `solicitud-cita.html?servicio=${servicios[1].id}`;
+        }
 
-    // Conectar botones dentro de la ventana emergente
-    if(idPediatrica) document.getElementById("modal-link-pediatrica").href = `detalle-servicio.html?id=${idPediatrica}`;
-    if(idAdulto) document.getElementById("modal-link-adulto").href = `detalle-servicio.html?id=${idAdulto}`;
 
-    // Lógica para abrir la ventana emergente al hacer clic en Evaluación Inicial
+        const btnDeportiva = document.getElementById("link-deportiva");
+        if(btnDeportiva && servicios.length > 2) {
+            btnDeportiva.href = `solicitud-cita.html?servicio=${servicios[2].id}`;
+        }
+
+        const btnVegana = document.getElementById("link-vegana");
+        if(btnVegana && servicios.length > 3) {
+            btnVegana.href = `solicitud-cita.html?servicio=${servicios[3].id}`;
+        }
+
+    }, 200); 
+
+
     const btnEvaluacion = document.getElementById("btn-evaluacion");
     const modal = document.getElementById("modal-evaluacion");
 

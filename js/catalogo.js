@@ -144,7 +144,7 @@ function crearTarjetaServicio(servicio) {
     <p>${servicio.descripcion}</p>
     <p class="servicio-card__precio">${formatoCLP.format(servicio.precio)}</p>
     <div class="servicio-card__acciones">
-      <a href="solicitud-cita.html?codigo=${servicio.codigo}" class="btn btn--primary" style="width: 100%; text-align: center;">Agendar Especialista</a>
+      <a href="solicitud-cita.html?servicio=${servicio.codigo}" class="btn btn--primary" style="width: 100%; text-align: center;">Agendar Especialista</a>
     </div>
   `;
   return card;
