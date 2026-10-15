@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navbar'
 import Inicio from './pages/Inicio'
+import Catalogo from './pages/Catalogo'
+import Contacto from './pages/Contacto'
+import Login from './pages/Login' 
 
 function App() {
   return (
@@ -8,7 +11,9 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Inicio />} />
-        {/* Aquí agregaremos las demás rutas luego */}
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} /> 
       </Routes>
     </BrowserRouter>
   )
