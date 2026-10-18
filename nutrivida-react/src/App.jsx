@@ -4,7 +4,8 @@ import Inicio from './pages/Inicio'
 import Catalogo from './pages/Catalogo'
 import Contacto from './pages/Contacto'
 import Login from './pages/Login'
-import DetalleServicio from './pages/DetalleServicio' 
+import DetalleServicio from './pages/DetalleServicio'
+import Admin from './pages/Admin' 
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/servicio/:id" element={<DetalleServicio />} /> 
+        <Route path="/servicio/:id" element={<DetalleServicio />} />
+        <Route path="/admin" element={<Admin />} /> 
       </Routes>
     </BrowserRouter>
   )
