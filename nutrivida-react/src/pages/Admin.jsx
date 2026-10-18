@@ -1,124 +1,130 @@
-import { useState, useEffect } from 'react'
-import { Container, Button, Card, Table, Form, Row, Col } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import {
+  Navigate,
+  NavLink,
+  Link,
+  Routes,
+  Route,
+  useNavigate,
+} from 'react-router-dom'
+import { Button, Modal } from 'react-bootstrap'
+import { logoutSession } from '../lib/storage'
+import { authorizedSession } from '../lib/admin'
+import Overview from './admin/Overview'
+import Users from './admin/Users'
+import Services from './admin/Services'
+import Appointments from './admin/Appointments'
+import Reports from './admin/Reports'
+import {
+  CategoriesAdmin,
+  OrdersAdmin,
+  CriticalServices,
+} from './admin/Business'
+import './admin/admin.css'
 
-function Admin() {
+export default function Admin() {
+  const [session, setSession] = useState(authorizedSession)
+  const [confirmLogout, setConfirmLogout] = useState(false)
   const navigate = useNavigate()
-  const [servicios, setServicios] = useState([])
-  
-  const [nuevoServicio, setNuevoServicio] = useState({
-    titulo: '', descripcion: '', precio: '', imagen: '', doctor: '' 
-  })
-
   useEffect(() => {
-    const sesionActiva = localStorage.getItem('adminLogueado')
-    if (!sesionActiva) {
-      navigate('/login')
-    } else {
-      const datosGuardados = localStorage.getItem('serviciosNutriVida')
-      if (datosGuardados) setServicios(JSON.parse(datosGuardados))
+    const update = () => setSession(authorizedSession())
+    for (const name of ['storage', 'nutrivida-session', 'nutrivida-data'])
+      window.addEventListener(name, update)
+    return () => {
+      for (const name of ['storage', 'nutrivida-session', 'nutrivida-data'])
+        window.removeEventListener(name, update)
     }
-  }, [navigate])
-
-  const cerrarSesion = () => {
-    localStorage.removeItem('adminLogueado')
-    navigate('/')
-  }
-
-  const manejarAgregar = (e) => {
-    e.preventDefault()
-    const nuevoId = servicios.length > 0 ? Math.max(...servicios.map(s => s.id)) + 1 : 1
-    const servicioAguardar = { id: nuevoId, ...nuevoServicio }
-    
-    const catalogoActualizado = [...servicios, servicioAguardar]
-    setServicios(catalogoActualizado)
-    localStorage.setItem('serviciosNutriVida', JSON.stringify(catalogoActualizado))
-    
-    setNuevoServicio({ titulo: '', descripcion: '', precio: '', imagen: '', doctor: '' })
-  }
-
-  const manejarEliminar = (id) => {
-    const catalogoActualizado = servicios.filter(servicio => servicio.id !== id)
-    setServicios(catalogoActualizado)
-    localStorage.setItem('serviciosNutriVida', JSON.stringify(catalogoActualizado))
-  }
-
+  }, [])
+  if (!session) return <Navigate to="/login" replace />
   return (
-    <Container className="mt-5">
-      <Card className="shadow-sm border-success mb-5">
-        <Card.Header className="bg-success text-white d-flex justify-content-between align-items-center">
-          <h3 className="m-0">Panel de Administración</h3>
-          <Button variant="danger" size="sm" onClick={cerrarSesion}>Cerrar Sesión</Button>
-        </Card.Header>
-        <Card.Body>
-          
-          <h5 className="text-success mb-3">Agregar Nuevo Servicio</h5>
-          <Form onSubmit={manejarAgregar} className="mb-4 bg-light p-3 rounded">
-            <Row>
-              <Col md={2}>
-                <Form.Control type="text" placeholder="Título" required 
-                  value={nuevoServicio.titulo} 
-                  onChange={(e) => setNuevoServicio({...nuevoServicio, titulo: e.target.value})} />
-              </Col>
-              <Col md={3}>
-                <Form.Control type="text" placeholder="Descripción breve" required 
-                  value={nuevoServicio.descripcion} 
-                  onChange={(e) => setNuevoServicio({...nuevoServicio, descripcion: e.target.value})} />
-              </Col>
-              <Col md={2}>
-                <Form.Control type="text" placeholder="Precio (ej: 15.000)" required 
-                  value={nuevoServicio.precio} 
-                  onChange={(e) => setNuevoServicio({...nuevoServicio, precio: e.target.value})} />
-              </Col>
-              <Col md={3}>
-                <Form.Control type="text" placeholder="Dr. a cargo (ej: Juan Pérez)" required 
-                  value={nuevoServicio.doctor} 
-                  onChange={(e) => setNuevoServicio({...nuevoServicio, doctor: e.target.value})} />
-              </Col>
-              <Col md={2}>
-                <Form.Control type="url" placeholder="URL de la imagen" required 
-                  value={nuevoServicio.imagen} 
-                  onChange={(e) => setNuevoServicio({...nuevoServicio, imagen: e.target.value})} />
-              </Col>
-            </Row>
-            <Button variant="success" type="submit" className="mt-3">Guardar Servicio</Button>
-          </Form>
-
-          <h5 className="text-success mb-3">Servicios Actuales</h5>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Doctor</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {servicios.map((servicio) => (
-                <tr key={servicio.id}>
-                  <td>{servicio.id}</td>
-                  <td>{servicio.titulo}</td>
-                  <td>{servicio.doctor || 'No asignado'}</td>
-                  <td>${servicio.precio}</td>
-                  <td>
-                    <Button variant="outline-danger" size="sm" onClick={() => manejarEliminar(servicio.id)}>
-                      Eliminar
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-              {servicios.length === 0 && (
-                <tr><td colSpan="5" className="text-center">No hay servicios en el catálogo.</td></tr>
-              )}
-            </tbody>
-          </Table>
-
-        </Card.Body>
-      </Card>
-    </Container>
+    <div className="admin-view">
+      <a className="admin-skip" href="#admin-content">
+        Saltar al contenido
+      </a>
+      <div className="dashboard-layout">
+        <aside className="admin-sidebar">
+          <Link className="admin-brand" to="/admin">
+            NutriVida <span>Admin</span>
+          </Link>
+          <p className="admin-sidebar-caption">ADMINISTRACIÓN DE LA CLÍNICA</p>
+          <nav aria-label="Administración">
+            {[
+              ['/admin', 'Resumen', '01'],
+              ['/admin/usuarios', 'Gestión de Usuarios', '02'],
+              ['/admin/servicios', 'Catálogo de Servicios', '03'],
+              ['/admin/citas', 'Gestor de Citas', '04'],
+              ['/admin/reportes', 'Reportes', '05'],
+              ['/admin/categorias', 'Categorías', '06'],
+              ['/admin/ordenes', 'Órdenes y comprobantes', '07'],
+              ['/admin/criticos', 'Servicios por revisar', '08'],
+            ].map(([url, label, number]) => (
+              <NavLink key={url} to={url} end={url === '/admin'}>
+                <span aria-hidden="true">{number}</span>
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+          <div className="admin-sidebar-footer">
+            <Link className="admin-site-link" to="/perfil">
+              Hola {session.nombre} · Mi perfil
+            </Link>
+            <Link className="admin-site-link" to="/citas">
+              Mis citas
+            </Link>
+            <Link className="admin-site-link" to="/">
+              Ver Sitio Web <span aria-hidden="true">↗</span>
+            </Link>
+            <button
+              className="admin-logout"
+              onClick={() => setConfirmLogout(true)}
+            >
+              Cerrar Sesión
+            </button>
+          </div>
+        </aside>
+        <section
+          className="admin-main"
+          id="admin-content"
+          aria-label="Panel de Administración"
+        >
+          <Routes>
+            <Route index element={<Overview session={session} />} />
+            <Route path="usuarios" element={<Users session={session} />} />
+            <Route path="servicios" element={<Services />} />
+            <Route path="citas" element={<Appointments />} />
+            <Route path="reportes" element={<Reports />} />
+            <Route path="categorias" element={<CategoriesAdmin />} />
+            <Route path="ordenes" element={<OrdersAdmin />} />
+            <Route path="criticos" element={<CriticalServices />} />
+            <Route path="*" element={<Navigate to="/admin" replace />} />
+          </Routes>
+        </section>
+      </div>
+      <Modal
+        show={confirmLogout}
+        onHide={() => setConfirmLogout(false)}
+        centered
+        aria-labelledby="logout-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="logout-title">Cerrar sesión</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>¿Seguro que deseas cerrar sesión?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setConfirmLogout(false)}>
+            Cancelar
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              logoutSession()
+              navigate('/login', { replace: true })
+            }}
+          >
+            Confirmar cierre de sesión
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   )
 }
-
-export default Admin

@@ -20,6 +20,8 @@ describe('Pruebas en el componente <Contacto />', () => {
 
   it('4. Debe contener el botón de enviar', () => {
     render(<Contacto />)
-    expect(screen.getByRole('button', { name: /Enviar Mensaje/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /Enviar Mensaje/i }),
+    ).toBeInTheDocument()
   })
 })

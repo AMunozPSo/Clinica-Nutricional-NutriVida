@@ -40,14 +40,167 @@ body {
   color: white;
 }
 
-/* Efecto suave y sombra azulada para las tarjetas del catálogo */
+:root {
+  --navy: #003366;
+  --teal: #277d78;
+}
+body {
+  color: #233d50;
+  margin: 0;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+  padding-bottom: 3rem;
+}
+h1,
+h2,
+h3 {
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.2;
+}
+h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+p {
+  line-height: 1.8;
+}
+a {
+  color: var(--navy);
+}
+.brand-dot {
+  color: var(--teal);
+}
+.navbar-brand {
+  font-size: 1.8rem;
+  letter-spacing: -0.06em;
+}
+.nav-link.active {
+  color: var(--navy) !important;
+  font-weight: 600;
+}
+.btn {
+  border-radius: 0.65rem;
+  padding: 0.65rem 1.1rem;
+}
+.hero {
+  padding: 5rem 0;
+  background: linear-gradient(120deg, #edf6f6, #f4f9ff);
+}
+.hero-image {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 2rem 2rem 6rem 2rem;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.16em;
+}
+.feature {
+  background: white;
+  border: 1px solid #dae7ed;
+  padding: 2rem;
+  border-radius: 1.25rem;
+}
+.feature-number {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
 .card {
-  transition: transform 0.2s ease-in-out;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 51, 102, 0.08);
+  border: 1px solid #dce7ef;
+  border-radius: 1.1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 24px #00336609;
+}
+.team-avatar {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  background: #e3f2f0;
+  color: var(--teal);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.clinic-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.carousel-caption {
+  background: #003366cf;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+.carousel-caption h3 {
+  color: white;
+  font-size: 1.2rem;
+}
+.contact-map {
+  border: 0;
+  width: 100%;
+  height: 340px;
+  border-radius: 1rem;
+}
+.site-footer {
+  background: #00294f;
+  color: #d5e3ed;
+  padding: 3rem 0 1.5rem;
+  margin-top: 2rem;
+}
+.footer-legal {
+  border-top: 1px solid #ffffff30;
+  padding-top: 1.3rem;
+  font-size: 0.8rem;
+  margin: 0;
+}
+.form-control {
+  padding: 0.8rem;
+  border-color: #bccdd8;
+}
+:focus-visible {
+  outline: 3px solid #277d78;
+  outline-offset: 3px;
+}
+@media (max-width: 767px) {
+  .hero {
+    padding: 3rem 0;
+  }
+  .hero-image {
+    height: 280px;
+  }
+  .clinic-image {
+    height: 300px;
+  }
+  .team-avatar + .card-body {
+    padding-left: 0;
+  }
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 51, 102, 0.15);
+.navbar .navbar-nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.navbar .nav-link,
+.navbar .btn {
+  font-size: 0.85rem;
+}
+@media print {
+  .navbar,
+  .site-footer,
+  .btn {
+    display: none !important;
+  }
 }

@@ -1,72 +1,75 @@
-import { useState, useEffect } from 'react'
-import { Container, Row, Col, Alert } from 'react-bootstrap'
+import { useState } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
+import { Container, Row, Col, Alert, Form } from 'react-bootstrap'
 import TarjetaServicio from '../components/TarjetaServicio'
-
-function Catalogo() {
-
-  const [servicios, setServicios] = useState([])
-
-  
-  useEffect(() => {
-    const cargarDatos = () => {
-    
-      const datosGuardados = localStorage.getItem('serviciosNutriVida')
-      
-      if (datosGuardados) {
-        
-        setServicios(JSON.parse(datosGuardados))
-      } else {
-        
-        const datosIniciales = [
-          { 
-            id: 1, 
-            titulo: 'Evaluación Nutricional', 
-            descripcion: 'Análisis completo de composición corporal y estado actual.', 
-            precio: '25.000', 
-            imagen: 'https://images.unsplash.com/photo-1550831107-1553da8c8464?w=500&q=80' 
-          },
-          { 
-            id: 2, 
-            titulo: 'Nutrición Deportiva', 
-            descripcion: 'Plan enfocado en optimizar tu rendimiento físico y ganar masa muscular.', 
-            precio: '35.000', 
-            imagen: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80' 
-          },
-          { 
-            id: 3, 
-            titulo: 'Control de Peso', 
-            descripcion: 'Acompañamiento mensual para pérdida de grasa de forma saludable.', 
-            precio: '20.000', 
-            imagen: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80' 
-          }
-        ]
-       
-        localStorage.setItem('serviciosNutriVida', JSON.stringify(datosIniciales))
-        setServicios(datosIniciales)
-      }
-    }
-
-    cargarDatos()
-  }, []) 
-
+import { serviceList } from '../lib/admin'
+import { readCategories } from '../lib/commerce'
+import { useAdminData } from '../lib/useAdminData'
+export default function Catalogo() {
+  const services = useAdminData(serviceList)
+  const categories = useAdminData(readCategories)
+  const [search, setSearch] = useSearchParams()
+  const [query, setQuery] = useState('')
+  const offers = useLocation().pathname === '/ofertas'
+  const filtered = services.filter(
+    (item) =>
+      (!offers || Number(item.descuento) > 0) &&
+      (!search.get('categoria') ||
+        item.categoria === search.get('categoria')) &&
+      `${item.titulo} ${item.descripcion}`
+        .toLowerCase()
+        .includes(query.toLowerCase()),
+  )
   return (
-    <Container className="mt-5">
-      <h2 className="text-center mb-4 text-success">Nuestro Catálogo de Servicios</h2>
-      
-      
-      {servicios.length === 0 ? (
-        <Alert variant="info" className="text-center">Cargando servicios...</Alert>
+    <Container className="py-5">
+      <h1 className="h2 mb-4 text-success">
+        {offers ? 'Ofertas' : 'Nuestro Catálogo de Servicios'}
+      </h1>
+      <Row className="g-3 mb-4">
+        <Col md={6}>
+          <Form.Group controlId="catalog-search">
+            <Form.Label>Buscar servicios</Form.Label>
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Nombre o descripción"
+            />
+          </Form.Group>
+        </Col>
+        <Col md={6}>
+          <Form.Group controlId="catalog-category">
+            <Form.Label>Categoría</Form.Label>
+            <Form.Select
+              value={search.get('categoria') || ''}
+              onChange={(event) => {
+                const next = new URLSearchParams(search)
+                if (event.target.value)
+                  next.set('categoria', event.target.value)
+                else next.delete('categoria')
+                setSearch(next)
+              }}
+            >
+              <option value="">Todas las categorías</option>
+              {categories.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.nombre}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
+      {!filtered.length ? (
+        <Alert variant="info">
+          {offers
+            ? 'No hay ofertas disponibles para estos filtros.'
+            : 'No hay servicios disponibles para estos filtros.'}
+        </Alert>
       ) : (
         <Row>
-          {servicios.map((servicio) => (
-            <Col key={servicio.id} md={4} className="mb-4">
-              <TarjetaServicio 
-                id={servicio.id}
-                titulo={servicio.titulo}
-                descripcion={servicio.descripcion}
-                precio={servicio.precio}
-                imagen={servicio.imagen}
-              />
+          {filtered.map((item) => (
+            <Col key={item.id} md={6} lg={4} className="mb-4">
+              <TarjetaServicio {...item} />
             </Col>
           ))}
         </Row>
@@ -74,5 +77,3 @@ function Catalogo() {
     </Container>
   )
 }
-
-export default Catalogo
