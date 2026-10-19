@@ -69,6 +69,4 @@ El docente determina la aceptación de la adaptación clínica y la evaluación 
 
 Karma y su cadena de instrumentación incluyen dependencias legadas con avisos de auditoría. Se conserva el runner requerido por la pauta y se limita a pruebas locales. La auditoría sin dependencias de desarrollo no reportó vulnerabilidades en esta instalación; esto no sustituye una auditoría de producción.
 
-## Revisión del ERS original
-
-La revisión 2.1 conserva R.1 a R.29 de la planilla de EP1 y añade R.30 a R.42 para EP2. La sección 4.3 del ERS identifica las diferencias de implementación y validación que todavía requieren cierre. El documento distingue pruebas aprobadas de requisitos completamente satisfechos. Las fuentes originales aportadas por los integrantes no se modificaron.
+La revisión 2.2 del ERS mantiene la estructura y el índice completos del original, con R.1 a R.29 y sin capítulos añadidos. Las diferencias de implementación y validación se describen dentro de 3.2, 3.3 y 3.4. Las fuentes originales aportadas por los integrantes no se modificaron.

@@ -22,4 +22,4 @@ npm run verify
 
 El proyecto utiliza datos locales y pagos simulados. No incluye un backend real ni cobros bancarios. El alcance y la adaptación de la tienda al caso de la clínica están detallados en el ERS.
 
-La revisión 2.1 del ERS conserva los 29 requisitos de la planilla inicial y añade R.30 a R.42 para EP2. La sección 4.3 detalla diferencias pendientes: entre ellas filtro por modalidad, reprogramación, desactivación reversible, formato de RUN y alerta de cupos. No se declara aceptación completa de la propuesta inicial.
+La revisión 2.2 del ERS conserva los apartados, títulos y orden del documento original y los requisitos R.1 a R.29. Las diferencias pendientes se describen en 3.2, 3.3 y 3.4, sin añadir capítulos. No se declara aceptación completa de la propuesta inicial.
