@@ -13,12 +13,6 @@ npm run dev
 npm run verify
 ```
 
-## Entregables y evidencias
-
-- [ERS V2 editable](nutrivida-react/docs/NutriVida_ERS_V2.docx) y [PDF](nutrivida-react/docs/NutriVida_ERS_V2.pdf)
-- [Informe de testing](nutrivida-react/docs/NutriVida_Informe_Testing.pdf)
-- [Guía de presentación](nutrivida-react/docs/Guia_presentacion.md)
-- [Resultados y evidencias](nutrivida-react/docs/evidencias)
 
 El proyecto utiliza datos locales y pagos simulados. No incluye un backend real ni cobros bancarios. El alcance y la adaptación de la tienda al caso de la clínica están detallados en el ERS.
 
