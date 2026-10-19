@@ -58,7 +58,7 @@ Los reportes HTML se generan en `coverage/vitest` y `coverage/jasmine`. El ZIP i
 
 ## Documentos de entrega
 
-- `docs/NutriVida_ERS_V2.pdf` y fuente `ERS_V2.md`.
+- `docs/NutriVida_ERS_V2.docx` editable, `NutriVida_ERS_V2.pdf` y fuente `ERS_V2.md`.
 - `docs/NutriVida_Informe_Testing.pdf` y fuente `Informe_Testing.md`.
 - `docs/Guia_presentacion.md`.
 - `docs/evidencias` y reportes de cobertura regenerables.
@@ -68,3 +68,7 @@ El docente determina la aceptación de la adaptación clínica y la evaluación 
 ## Avisos del entorno de desarrollo
 
 Karma y su cadena de instrumentación incluyen dependencias legadas con avisos de auditoría. Se conserva el runner requerido por la pauta y se limita a pruebas locales. La auditoría sin dependencias de desarrollo no reportó vulnerabilidades en esta instalación; esto no sustituye una auditoría de producción.
+
+## Revisión del ERS original
+
+La revisión 2.1 conserva R.1 a R.29 de la planilla de EP1 y añade R.30 a R.42 para EP2. La sección 4.3 del ERS identifica las diferencias de implementación y validación que todavía requieren cierre. El documento distingue pruebas aprobadas de requisitos completamente satisfechos. Las fuentes originales aportadas por los integrantes no se modificaron.
