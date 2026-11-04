@@ -1,0 +1,1204 @@
+{
+  "total": {
+    "lines": {
+      "total": 1082,
+      "covered": 602,
+      "skipped": 0,
+      "pct": 55.63
+    },
+    "statements": {
+      "total": 1186,
+      "covered": 654,
+      "skipped": 0,
+      "pct": 55.14
+    },
+    "functions": {
+      "total": 404,
+      "covered": 214,
+      "skipped": 0,
+      "pct": 52.97
+    },
+    "branches": {
+      "total": 1143,
+      "covered": 572,
+      "skipped": 0,
+      "pct": 50.04
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/App.jsx": {
+    "lines": {
+      "total": 9,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 88.88
+    },
+    "functions": {
+      "total": 4,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 9,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 88.88
+    },
+    "branches": {
+      "total": 14,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 85.71
+    }
+  },
+  "src/components/Footer.jsx": {
+    "lines": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/components/Navbar.jsx": {
+    "lines": {
+      "total": 19,
+      "covered": 15,
+      "skipped": 0,
+      "pct": 78.94
+    },
+    "functions": {
+      "total": 8,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 75
+    },
+    "statements": {
+      "total": 20,
+      "covered": 16,
+      "skipped": 0,
+      "pct": 80
+    },
+    "branches": {
+      "total": 11,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 90.9
+    }
+  },
+  "src/components/TarjetaServicio.jsx": {
+    "lines": {
+      "total": 10,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 80
+    },
+    "functions": {
+      "total": 2,
+      "covered": 2,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 10,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 80
+    },
+    "branches": {
+      "total": 16,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 75
+    }
+  },
+  "src/components/UserFields.jsx": {
+    "lines": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 9,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 35,
+      "covered": 29,
+      "skipped": 0,
+      "pct": 82.85
+    }
+  },
+  "src/lib/account.js": {
+    "lines": {
+      "total": 42,
+      "covered": 14,
+      "skipped": 0,
+      "pct": 33.33
+    },
+    "functions": {
+      "total": 10,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 60
+    },
+    "statements": {
+      "total": 48,
+      "covered": 15,
+      "skipped": 0,
+      "pct": 31.25
+    },
+    "branches": {
+      "total": 38,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 15.78
+    }
+  },
+  "src/lib/admin.js": {
+    "lines": {
+      "total": 121,
+      "covered": 71,
+      "skipped": 0,
+      "pct": 58.67
+    },
+    "functions": {
+      "total": 39,
+      "covered": 20,
+      "skipped": 0,
+      "pct": 51.28
+    },
+    "statements": {
+      "total": 140,
+      "covered": 80,
+      "skipped": 0,
+      "pct": 57.14
+    },
+    "branches": {
+      "total": 169,
+      "covered": 68,
+      "skipped": 0,
+      "pct": 40.23
+    }
+  },
+  "src/lib/booking.js": {
+    "lines": {
+      "total": 43,
+      "covered": 34,
+      "skipped": 0,
+      "pct": 79.06
+    },
+    "functions": {
+      "total": 17,
+      "covered": 14,
+      "skipped": 0,
+      "pct": 82.35
+    },
+    "statements": {
+      "total": 48,
+      "covered": 38,
+      "skipped": 0,
+      "pct": 79.16
+    },
+    "branches": {
+      "total": 51,
+      "covered": 37,
+      "skipped": 0,
+      "pct": 72.54
+    }
+  },
+  "src/lib/clinical.js": {
+    "lines": {
+      "total": 42,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 2.38
+    },
+    "functions": {
+      "total": 18,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 49,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 2.04
+    },
+    "branches": {
+      "total": 48,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/lib/commerce.js": {
+    "lines": {
+      "total": 102,
+      "covered": 62,
+      "skipped": 0,
+      "pct": 60.78
+    },
+    "functions": {
+      "total": 40,
+      "covered": 28,
+      "skipped": 0,
+      "pct": 70
+    },
+    "statements": {
+      "total": 118,
+      "covered": 72,
+      "skipped": 0,
+      "pct": 61.01
+    },
+    "branches": {
+      "total": 98,
+      "covered": 54,
+      "skipped": 0,
+      "pct": 55.1
+    }
+  },
+  "src/lib/demoCatalog.js": {
+    "lines": {
+      "total": 34,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 10,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 41,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 18,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/lib/registration.js": {
+    "lines": {
+      "total": 9,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 2,
+      "covered": 2,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 2,
+      "covered": 2,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/lib/rules.js": {
+    "lines": {
+      "total": 69,
+      "covered": 54,
+      "skipped": 0,
+      "pct": 78.26
+    },
+    "functions": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 79,
+      "covered": 63,
+      "skipped": 0,
+      "pct": 79.74
+    },
+    "branches": {
+      "total": 113,
+      "covered": 84,
+      "skipped": 0,
+      "pct": 74.33
+    }
+  },
+  "src/lib/storage.js": {
+    "lines": {
+      "total": 29,
+      "covered": 25,
+      "skipped": 0,
+      "pct": 86.2
+    },
+    "functions": {
+      "total": 7,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 85.71
+    },
+    "statements": {
+      "total": 32,
+      "covered": 27,
+      "skipped": 0,
+      "pct": 84.37
+    },
+    "branches": {
+      "total": 41,
+      "covered": 29,
+      "skipped": 0,
+      "pct": 70.73
+    }
+  },
+  "src/lib/useAdminData.js": {
+    "lines": {
+      "total": 11,
+      "covered": 11,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 4,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 12,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/lib/useSession.js": {
+    "lines": {
+      "total": 9,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 4,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/lib/userDefaults.js": {
+    "lines": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "functions": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 1,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 100
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/pages/Admin.jsx": {
+    "lines": {
+      "total": 18,
+      "covered": 16,
+      "skipped": 0,
+      "pct": 88.88
+    },
+    "functions": {
+      "total": 9,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 77.77
+    },
+    "statements": {
+      "total": 20,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 90
+    },
+    "branches": {
+      "total": 2,
+      "covered": 2,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/pages/AgendarCita.jsx": {
+    "lines": {
+      "total": 30,
+      "covered": 27,
+      "skipped": 0,
+      "pct": 90
+    },
+    "functions": {
+      "total": 11,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 90.9
+    },
+    "statements": {
+      "total": 32,
+      "covered": 28,
+      "skipped": 0,
+      "pct": 87.5
+    },
+    "branches": {
+      "total": 26,
+      "covered": 16,
+      "skipped": 0,
+      "pct": 61.53
+    }
+  },
+  "src/pages/Catalogo.jsx": {
+    "lines": {
+      "total": 16,
+      "covered": 11,
+      "skipped": 0,
+      "pct": 68.75
+    },
+    "functions": {
+      "total": 6,
+      "covered": 5,
+      "skipped": 0,
+      "pct": 83.33
+    },
+    "statements": {
+      "total": 16,
+      "covered": 11,
+      "skipped": 0,
+      "pct": 68.75
+    },
+    "branches": {
+      "total": 15,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 60
+    }
+  },
+  "src/pages/Contacto.jsx": {
+    "lines": {
+      "total": 28,
+      "covered": 26,
+      "skipped": 0,
+      "pct": 92.85
+    },
+    "functions": {
+      "total": 4,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 31,
+      "covered": 28,
+      "skipped": 0,
+      "pct": 90.32
+    },
+    "branches": {
+      "total": 28,
+      "covered": 23,
+      "skipped": 0,
+      "pct": 82.14
+    }
+  },
+  "src/pages/DetalleServicio.jsx": {
+    "lines": {
+      "total": 10,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 3,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 11,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/Inicio.jsx": {
+    "lines": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/pages/Login.jsx": {
+    "lines": {
+      "total": 22,
+      "covered": 20,
+      "skipped": 0,
+      "pct": 90.9
+    },
+    "functions": {
+      "total": 5,
+      "covered": 5,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 23,
+      "covered": 21,
+      "skipped": 0,
+      "pct": 91.3
+    },
+    "branches": {
+      "total": 27,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 66.66
+    }
+  },
+  "src/pages/MisCitas.jsx": {
+    "lines": {
+      "total": 22,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 81.81
+    },
+    "functions": {
+      "total": 10,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 70
+    },
+    "statements": {
+      "total": 23,
+      "covered": 18,
+      "skipped": 0,
+      "pct": 78.26
+    },
+    "branches": {
+      "total": 26,
+      "covered": 17,
+      "skipped": 0,
+      "pct": 65.38
+    }
+  },
+  "src/pages/Nosotros.jsx": {
+    "lines": {
+      "total": 11,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 7,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 11,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 20,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/Perfil.jsx": {
+    "lines": {
+      "total": 24,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 11,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 27,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 43,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/Registro.jsx": {
+    "lines": {
+      "total": 24,
+      "covered": 23,
+      "skipped": 0,
+      "pct": 95.83
+    },
+    "functions": {
+      "total": 10,
+      "covered": 10,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 26,
+      "covered": 25,
+      "skipped": 0,
+      "pct": 96.15
+    },
+    "branches": {
+      "total": 22,
+      "covered": 21,
+      "skipped": 0,
+      "pct": 95.45
+    }
+  },
+  "src/pages/Seller.jsx": {
+    "lines": {
+      "total": 14,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 64.28
+    },
+    "functions": {
+      "total": 7,
+      "covered": 3,
+      "skipped": 0,
+      "pct": 42.85
+    },
+    "statements": {
+      "total": 14,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 64.28
+    },
+    "branches": {
+      "total": 10,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 90
+    }
+  },
+  "src/pages/admin/Appointments.jsx": {
+    "lines": {
+      "total": 28,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 14,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 28,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 20,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/admin/Business.jsx": {
+    "lines": {
+      "total": 31,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 15,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 31,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 27,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/admin/Overview.jsx": {
+    "lines": {
+      "total": 13,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 61.53
+    },
+    "functions": {
+      "total": 7,
+      "covered": 2,
+      "skipped": 0,
+      "pct": 28.57
+    },
+    "statements": {
+      "total": 14,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 64.28
+    },
+    "branches": {
+      "total": 14,
+      "covered": 3,
+      "skipped": 0,
+      "pct": 21.42
+    }
+  },
+  "src/pages/admin/Reports.jsx": {
+    "lines": {
+      "total": 9,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 4,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 9,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "src/pages/admin/Services.jsx": {
+    "lines": {
+      "total": 49,
+      "covered": 38,
+      "skipped": 0,
+      "pct": 77.55
+    },
+    "functions": {
+      "total": 22,
+      "covered": 17,
+      "skipped": 0,
+      "pct": 77.27
+    },
+    "statements": {
+      "total": 51,
+      "covered": 40,
+      "skipped": 0,
+      "pct": 78.43
+    },
+    "branches": {
+      "total": 71,
+      "covered": 58,
+      "skipped": 0,
+      "pct": 81.69
+    }
+  },
+  "src/pages/admin/Users.jsx": {
+    "lines": {
+      "total": 54,
+      "covered": 27,
+      "skipped": 0,
+      "pct": 50
+    },
+    "functions": {
+      "total": 20,
+      "covered": 4,
+      "skipped": 0,
+      "pct": 20
+    },
+    "statements": {
+      "total": 54,
+      "covered": 27,
+      "skipped": 0,
+      "pct": 50
+    },
+    "branches": {
+      "total": 42,
+      "covered": 19,
+      "skipped": 0,
+      "pct": 45.23
+    }
+  },
+  "src/pages/admin/shared.jsx": {
+    "lines": {
+      "total": 7,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 85.71
+    },
+    "functions": {
+      "total": 7,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 85.71
+    },
+    "statements": {
+      "total": 7,
+      "covered": 6,
+      "skipped": 0,
+      "pct": 85.71
+    },
+    "branches": {
+      "total": 8,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 87.5
+    }
+  },
+  "src/pages/content/Blog.jsx": {
+    "lines": {
+      "total": 8,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 12.5
+    },
+    "functions": {
+      "total": 4,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 9,
+      "covered": 1,
+      "skipped": 0,
+      "pct": 11.11
+    },
+    "branches": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/content/Doctor.jsx": {
+    "lines": {
+      "total": 21,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 7,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 22,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 18,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/content/Plan.jsx": {
+    "lines": {
+      "total": 5,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 4,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/content/Progress.jsx": {
+    "lines": {
+      "total": 21,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 7,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 22,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/shop/Cart.jsx": {
+    "lines": {
+      "total": 13,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 92.3
+    },
+    "functions": {
+      "total": 7,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 13,
+      "covered": 12,
+      "skipped": 0,
+      "pct": 92.3
+    },
+    "branches": {
+      "total": 8,
+      "covered": 5,
+      "skipped": 0,
+      "pct": 62.5
+    }
+  },
+  "src/pages/shop/Categorias.jsx": {
+    "lines": {
+      "total": 3,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 3,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 2,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  },
+  "src/pages/shop/Checkout.jsx": {
+    "lines": {
+      "total": 24,
+      "covered": 20,
+      "skipped": 0,
+      "pct": 83.33
+    },
+    "functions": {
+      "total": 10,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 80
+    },
+    "statements": {
+      "total": 26,
+      "covered": 21,
+      "skipped": 0,
+      "pct": 80.76
+    },
+    "branches": {
+      "total": 22,
+      "covered": 13,
+      "skipped": 0,
+      "pct": 59.09
+    }
+  },
+  "src/pages/shop/OrderResult.jsx": {
+    "lines": {
+      "total": 8,
+      "covered": 7,
+      "skipped": 0,
+      "pct": 87.5
+    },
+    "functions": {
+      "total": 3,
+      "covered": 3,
+      "skipped": 0,
+      "pct": 100
+    },
+    "statements": {
+      "total": 9,
+      "covered": 8,
+      "skipped": 0,
+      "pct": 88.88
+    },
+    "branches": {
+      "total": 10,
+      "covered": 9,
+      "skipped": 0,
+      "pct": 90
+    }
+  },
+  "src/pages/shop/Orders.jsx": {
+    "lines": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "functions": {
+      "total": 3,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "statements": {
+      "total": 8,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    },
+    "branches": {
+      "total": 6,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 0
+    }
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriVida - Gestión de Usuarios</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-view">
+
+  <div class="dashboard-layout">
+    
+    <aside class="sidebar">
+      <h2>NutriVida Admin</h2>
+      
+      <nav style="display: flex; flex-direction: column; height: 100%;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="home-admin.html">Resumen</a>
+          <a href="mantenedor-usuarios.html" class="active">Gestión de Usuarios</a>
+          <a href="admin-catalogo.html">Catálogo de Servicios</a>
+          <a href="gestor-citas.html">Gestor de Citas</a>
+          <a href="admin-reportes.html">Reportes</a>
+        </div>
+        
+        <!-- Botones actualizados -->
+        <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="index.html" class="btn-logout" style="background-color: var(--color-sage); color: white; text-align: center;">Ver Sitio Web</a>
+          <a href="#" id="btnCerrarSesionAdmin" class="btn-logout" style="text-align: center;">Cerrar Sesión</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1>Gestión de Usuarios</h1>
+        <button class="btn btn--primary" onclick="toggleFormNuevoPaciente()">+ Nuevo Paciente</button>
+      </div>
+      
+      <!-- FORMULARIO OCULTO PARA AGREGAR PACIENTE MANUALMENTE -->
+      <div id="contenedorNuevoPaciente" style="display: none; background-color: var(--color-admin-card); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--color-admin-border);">
+        <h3 style="margin-top: 0;">Registrar Paciente Manualmente</h3>
+        <form id="formNuevoPaciente" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+          <input type="text" id="npNombre" placeholder="Nombre completo" required style="padding: 10px; flex: 1; border-radius: 4px; border: none;">
+          <input type="text" id="npRun" placeholder="RUN (Ej: 12345678-9)" required style="padding: 10px; flex: 1; border-radius: 4px; border: none;">
+          <input type="email" id="npCorreo" placeholder="Correo electrónico" required style="padding: 10px; flex: 1; border-radius: 4px; border: none;">
+          <input type="text" id="npPass" placeholder="Contraseña temporal" value="paciente123" required style="padding: 10px; flex: 1; border-radius: 4px; border: none;">
+          
+          <div style="width: 100%; display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
+            <button type="button" class="btn btn--secondary" onclick="toggleFormNuevoPaciente()">Cancelar</button>
+            <button type="submit" class="btn btn--primary">Guardar Paciente</button>
+          </div>
+        </form>
+      </div>
+
+      <p style="color: #a0aec0; margin-bottom: 30px;">Administra los pacientes registrados, revisa su consumo de servicios y asigna roles de administrador.</p>
+
+      <div style="overflow-x: auto; background-color: var(--color-admin-card); border-radius: 8px; border: 1px solid var(--color-admin-border);">
+        <table class="table-simple" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Nombre Completo</th>
+              <th>Correo Electrónico</th>
+              <th>Rol</th>
+              <th>Servicios Tomados</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaUsuariosBody">
+            <!-- JS inyectará los usuarios aquí -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/reglas.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin-usuarios.js"></script>
+</body>
+</html>

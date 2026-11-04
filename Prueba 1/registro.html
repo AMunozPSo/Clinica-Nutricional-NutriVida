@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - NutriVida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">NutriVida</a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu">
+        <a href="index.html" class="navbar__link">Inicio</a>
+        <a href="catalogo.html" class="navbar__link">Catálogo</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="blogs.html" class="navbar__link">Blog</a>
+        <a href="contacto.html" class="navbar__link">Contacto</a>
+        <a href="login.html" class="navbar__link navbar__link--cta" id="navAuthLink">Iniciar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="section">
+        <div class="container" style="max-width: 500px; margin: 0 auto;">
+            <h1 class="text-center">Crea tu cuenta</h1>
+
+            <form id="registroForm" class="form">
+
+                <div class="form__field">
+                    <label for="nombreInput">Nombre Completo</label>
+                    <input type="text" id="nombreInput" maxlength="50" autocomplete="given-name" required placeholder="Ej: Juan Pérez">
+
+                </div>
+
+                <div class="form__field"><label for="apellidosInput">Apellidos</label><input id="apellidosInput" type="text" maxlength="100" autocomplete="family-name" required></div>
+                <div class="form__field"><label for="fechaNacimientoInput">Fecha de nacimiento (opcional)</label><input id="fechaNacimientoInput" type="date" autocomplete="bday"></div>
+                <div class="form__field">
+                    <label for="runInput">RUN (sin puntos ni guion)</label>
+                    <input type="text" id="runInput" placeholder="Ej: 123456785" maxlength="9">
+
+                </div>
+
+                <div class="form__field">
+                    <label for="telefonoInput">Teléfono (9 dígitos)</label>
+                    <input type="tel" id="telefonoInput" placeholder="Ej: 912345678" maxlength="9">
+
+                </div>
+
+                <div class="form__field">
+                    <label for="correoInput">Correo Electrónico</label>
+                    <input type="email" id="correoInput" maxlength="100" autocomplete="email" required placeholder="correo@ejemplo.com">
+
+                </div>
+
+                <div class="form__field">
+                    <label for="passInput">Contraseña</label>
+                    <input type="password" id="passInput" minlength="4" maxlength="10" autocomplete="new-password" required placeholder="Entre 4 y 10 caracteres">
+
+                </div>
+                <!--Repetir Contraseña -->
+                <div class="form__field">
+                    <label for="passConfirmInput">Repetir Contraseña</label>
+                    <input type="password" id="passConfirmInput" maxlength="10" autocomplete="new-password" required placeholder="Vuelve a escribir tu contraseña">
+
+                </div>
+
+                <div class="form__field">
+                    <label for="direccionInput">Dirección (Calle y número)</label>
+                    <input type="text" id="direccionInput" maxlength="300" autocomplete="street-address" required placeholder="Ej: Av. Siempre Viva 123">
+
+                </div>
+
+                <div class="form__field">
+                    <label for="regionSelect">Región</label>
+                    <select id="regionSelect">
+                        <option value="">Seleccione una región...</option>
+                    </select>
+                </div>
+
+                <div class="form__field">
+                    <label for="comunaSelect">Comuna</label>
+                    <select id="comunaSelect" disabled>
+                        <option value="">Seleccione primero una región...</option>
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn btn--primary" style="width: 100%; margin-top: 15px;">Registrarme</button>
+                <div id="mensajeExito" style="color: var(--color-forest); display: none; margin-top: 15px; text-align: center; font-weight: 600;">¡Registro exitoso! Redirigiendo...</div>
+            </form>
+        </div>
+    </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+  </footer>
+
+    <script src="js/reglas.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/main.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/registro.js"></script>
+</body>
+</html>

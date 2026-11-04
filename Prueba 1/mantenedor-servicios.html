@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenedor de Servicios - NutriVida</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="css/global.css">
+    <!-- CSS Específico de esta vista -->
+    <link rel="stylesheet" href="css/mantenedor.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar__logo">NutriVida Admin</div>
+        <nav class="navbar__menu">
+            <a href="home-admin.html">Inicio</a>
+            <a href="mantenedor-servicios.html">Servicios</a>
+            <a href="mantenedor-usuarios.html">Usuarios</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal de la vista -->
+    <main class="main-content">
+  <h1>Catálogo de Servicios</h1><button class="btn btn--primary" id="nuevoServicio">Nuevo servicio</button>
+  <section id="editorServicio" hidden><h2>Datos del servicio</h2><form id="servicioForm" class="form" novalidate></form></section>
+  <p id="servicioMensaje" role="status"></p><div class="table-scroll"><table class="table-simple"><thead><tr><th>Código</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Categoría</th><th>Acciones</th></tr></thead><tbody id="servicioFilas"></tbody></table></div>
+</main>
+
+    <!-- Footer-->
+    <footer class="footer">
+        <p>&copy; 2026 Clínica NutriVida. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JS de la vista -->
+    <script src="js/reglas.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/admin-catalogo.js"></script>
+</body>
+</html>

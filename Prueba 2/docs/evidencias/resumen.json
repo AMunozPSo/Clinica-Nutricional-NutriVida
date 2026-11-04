@@ -1,0 +1,56 @@
+{
+  "date": "miércoles, 4 de noviembre de 2026, 5:56 p. m.",
+  "node": "v24.22.0",
+  "results": {
+    "vitest": {
+      "exitCode": 0,
+      "tests": 10
+    },
+    "lint": {
+      "exitCode": 0
+    },
+    "build": {
+      "exitCode": 0
+    }
+  },
+  "versions": {
+    "react": "19.3.1",
+    "bootstrap": "5.3.8",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  },
+  "coverage": {
+    "vitest": {
+      "lines": {
+        "total": 1082,
+        "covered": 602,
+        "skipped": 0,
+        "pct": 55.63
+      },
+      "statements": {
+        "total": 1186,
+        "covered": 654,
+        "skipped": 0,
+        "pct": 55.14
+      },
+      "functions": {
+        "total": 404,
+        "covered": 214,
+        "skipped": 0,
+        "pct": 52.97
+      },
+      "branches": {
+        "total": 1143,
+        "covered": 572,
+        "skipped": 0,
+        "pct": 50.04
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  }
+}
