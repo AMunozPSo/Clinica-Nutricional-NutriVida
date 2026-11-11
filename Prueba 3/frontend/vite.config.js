@@ -17,7 +17,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/setupTests.js',
-    exclude: ['**/node_modules/**', '**/.karma/**', '**/tests/jasmine/**'],
+    exclude: ['**/node_modules/**'],
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{js,jsx}'],

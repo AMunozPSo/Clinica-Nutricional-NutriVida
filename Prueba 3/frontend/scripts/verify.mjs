@@ -8,7 +8,6 @@ const folder = path.join(root, 'docs/evidencias')
 fs.mkdirSync(folder, { recursive: true })
 const steps = [
   ['vitest', ['node_modules/vitest/vitest.mjs', 'run', '--coverage']],
-  ['jasmine', ['scripts/run-jasmine.mjs']],
   ['lint', ['node_modules/eslint/bin/eslint.js', '.']],
   ['build', ['node_modules/vite/bin/vite.js', 'build']],
 ]
@@ -38,10 +37,6 @@ for (const [name, args] of steps) {
   results[name] = { exitCode: run.status }
   if (name === 'vitest')
     results[name].tests = Number(output.match(/Tests\s+(\d+) passed/)?.[1] || 0)
-  if (name === 'jasmine')
-    results[name].tests = Number(
-      [...output.matchAll(/Executed (\d+) of (\d+)/g)].at(-1)?.[1] || 0,
-    )
   if (run.status !== 0) {
     console.error(output.slice(-16000))
     process.exit(run.status || 1)
@@ -64,14 +59,11 @@ for (const name of [
   'bootstrap',
   'vite',
   'vitest',
-  'jasmine-core',
-  'karma',
-  'karma-coverage',
 ])
   summary.versions[name] = JSON.parse(
     fs.readFileSync(`node_modules/${name}/package.json`, 'utf8'),
   ).version
-for (const name of ['vitest', 'jasmine']) {
+for (const name of ['vitest']) {
   const source = JSON.parse(
     fs.readFileSync(`coverage/${name}/coverage-summary.json`, 'utf8'),
   )
