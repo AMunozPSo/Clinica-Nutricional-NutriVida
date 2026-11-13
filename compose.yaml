@@ -96,5 +96,26 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  web:
+    image: caddy:2
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./web:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - usuarios
+      - catalogo
+      - atencion
+      - ventas
+    restart: unless-stopped
+
 volumes:
+  caddy_data:
+  caddy_config:
   mysql_data:
