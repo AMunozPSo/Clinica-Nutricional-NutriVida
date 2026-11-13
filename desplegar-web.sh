@@ -15,8 +15,9 @@ sudo git clone -q --depth 1 "$REPO" front-src
 echo "2/5 Compilando el frontend (contenedor Node, tarda unos minutos)…"
 sudo docker run --rm -v "/opt/nutrivida/front-src/Prueba 3/frontend":/app -w /app \
   node:22-alpine sh -c 'npm ci --silent && npm run build'
-sudo rm -rf web
-sudo cp -r "front-src/Prueba 3/frontend/dist" web
+# Se vacía la carpeta sin borrarla: Caddy la tiene montada y perdería el montaje.
+sudo mkdir -p web && sudo find web -mindepth 1 -delete
+sudo cp -r "front-src/Prueba 3/frontend/dist/." web/
 
 echo "3/5 Escribiendo el Caddyfile…"
 sudo tee Caddyfile >/dev/null <<'EOF'
