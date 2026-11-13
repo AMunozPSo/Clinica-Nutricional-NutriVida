@@ -100,7 +100,12 @@ export async function syncData() {
   data.services = services
   data.categories = categories
   data.professionals = professionals
-  if (session) {
+  if (session?.rol === 'vendedor') {
+    // El vendedor solo consulta productos y órdenes; no se piden citas, planes ni progreso.
+    const orders = await request('/pedidos')
+    if (data.session?.id !== session.id) return
+    data.orders = orders.map(order)
+  } else if (session) {
     const [users, appointments, orders, plans, progress, patients, messages] = await Promise.all([
       session.esAdmin ? request('/usuarios') : Promise.resolve([session]),
       request('/citas'), request('/pedidos'), request('/planes'), request('/progreso'),

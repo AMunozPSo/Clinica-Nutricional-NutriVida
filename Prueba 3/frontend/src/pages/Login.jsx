@@ -23,7 +23,7 @@ function Login() {
       const session = await loginSession(email.trim().toLowerCase(), password)
       try { adoptGuestCart() } catch { notice('Sesión iniciada. No se pudo recuperar el carrito de este navegador.') }
       const returnTo = typeof state?.returnTo === 'string' && /^\/agendar(?:\?|$)/.test(state.returnTo) ? state.returnTo : null
-      navigate(returnTo || (session.esAdmin ? '/admin' : session.rol === 'medico' ? '/doctor' : '/'))
+      navigate(returnTo || (session.esAdmin ? '/admin' : session.rol === 'medico' ? '/doctor' : session.rol === 'vendedor' ? '/vendedor' : '/'))
     } catch (failure) { setError(failure.message) }
     finally { setBusy(false) }
   }

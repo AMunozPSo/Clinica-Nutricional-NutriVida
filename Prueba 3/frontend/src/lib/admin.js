@@ -38,7 +38,7 @@ export async function changeUser(correo, action) {
   if (!user) throw new Error('Usuario no encontrado.')
   if (action === 'delete') return mutate(`/usuarios/${user.id}`, { method: 'DELETE' })
   return mutate(`/usuarios/${user.id}/permisos`, { method: 'PUT', body: {
-    rol: action === 'promote' ? 'ADMIN' : action === 'medico' ? 'MEDICO' : action === 'demote' ? 'PACIENTE' : user.rol.toUpperCase(),
+    rol: action === 'promote' ? 'ADMIN' : action === 'medico' ? 'MEDICO' : action === 'vendedor' ? 'VENDEDOR' : action === 'demote' ? 'PACIENTE' : user.rol.toUpperCase(),
     activo: action === 'activate' ? true : user.activo,
   } })
 }

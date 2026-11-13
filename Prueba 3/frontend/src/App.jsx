@@ -27,10 +27,18 @@ import DetalleServicio from './pages/DetalleServicio'
 import Nosotros from './pages/Nosotros'
 import Footer from './components/Footer'
 import Admin from './pages/Admin'
+import Vendedor from './pages/Vendedor'
+import { useSession } from './lib/useSession'
 
 function AppContent() {
   const { pathname, search } = useLocation()
-  const adminPage = pathname === '/admin' || pathname.startsWith('/admin/')
+  const session = useSession()
+  const sellerPage = pathname === '/vendedor' || pathname.startsWith('/vendedor/')
+  const adminPage =
+    pathname === '/admin' || pathname.startsWith('/admin/') || sellerPage
+  // El vendedor solo ve su panel: cualquier otra ruta lo devuelve a /vendedor.
+  if (session?.rol === 'vendedor' && !sellerPage)
+    return <Navigate to="/vendedor" replace />
   return (
     <>
       {!adminPage && <Navigation />}
@@ -92,6 +100,7 @@ function AppContent() {
           />
           <Route path="/servicio/:id" element={<DetalleServicio />} />
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/vendedor/*" element={<Vendedor />} />
           {Object.entries({
             'home-admin.html': '/admin',
             'mantenedor-usuarios.html': '/admin/usuarios',
