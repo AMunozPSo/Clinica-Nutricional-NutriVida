@@ -2,18 +2,46 @@
 
 Proyecto académico de **Antonia Muñoz y Felipe Araya**, DSY1104 Desarrollo Fullstack II.
 
-La versión React para la **Evaluación Parcial 2** está en [nutrivida-react](nutrivida-react). Revisa su README para instalar, ejecutar y probar. Los archivos HTML, CSS y JavaScript de la raíz se mantienen como referencia de la primera entrega.
+## Contenido del repositorio
 
-## Inicio rápido
+| Carpeta o archivo | Contenido |
+|---|---|
+| `Prueba 1`, `Prueba 2` | Entregas anteriores (HTML/CSS/JS y primera versión React) |
+| `Prueba 3/frontend` | Frontend React de la Evaluación 3, integrado con el backend por API REST |
+| `compose.yaml`, `Caddyfile`, `mysql/` | Despliegue con Docker: MySQL, cuatro microservicios y Caddy con HTTPS |
+| `desplegar-web.sh` | Script que compila y publica el frontend en la instancia EC2 |
+| `mysql/datos-demo.sql` | Categorías y servicios de demostración (se puede ejecutar varias veces sin duplicar) |
+
+El backend está en un repositorio separado, con un microservicio Spring Boot por rama (`microservicio/usuarios`, `catalogo`, `atencion` y `ventas`):
+https://github.com/f-hnv/MicroserviciosNutriVida
+
+## Demostración en AWS
+
+https://50.17.200.0.sslip.io
+
+Funciona mientras el Learner Lab y la instancia EC2 estén encendidos.
+
+## Evaluación 3: ejecución local del frontend
 
 ```sh
-cd nutrivida-react
+cd "Prueba 3/frontend"
 npm ci
 npm run dev
-npm run verify
 ```
 
+El frontend llama a `/api/v1` con `fetch`. En desarrollo, Vite reenvía esas rutas a los microservicios según `vite.config.js`; en producción lo hace Caddy según `Caddyfile`.
 
-El proyecto utiliza datos locales y pagos simulados. No incluye un backend real ni cobros bancarios. El alcance y la adaptación de la tienda al caso de la clínica están detallados en el ERS.
+## Autenticación y roles
 
-La revisión 2.2 del ERS conserva los apartados, títulos y orden del documento original y los requisitos R.1 a R.29. Las diferencias pendientes se describen en 3.2, 3.3 y 3.4, sin añadir capítulos. No se declara aceptación completa de la propuesta inicial.
+El inicio de sesión entrega un JWT firmado con RSA que el frontend envía en cada petición. Los permisos se validan en el backend con Spring Security.
+
+| Rol | Acceso |
+|---|---|
+| Administrador | Acceso total: usuarios, catálogo, citas, órdenes y reportes |
+| Vendedor | Solo lectura de productos y órdenes, con su detalle (`/vendedor`) |
+| Nutricionista | Agenda médica, planes y progreso de sus pacientes |
+| Paciente (cliente) | Tienda, compras, citas y su propio perfil |
+
+## Pruebas
+
+Las pruebas de Vitest del frontend se escribieron para la versión anterior, que guardaba los datos en `localStorage`. Desde que el frontend consume el backend, la mayoría falla porque no simulan las llamadas `fetch`; quedan pendientes de reescribir. Los pagos son simulados: no hay cobros bancarios reales.
