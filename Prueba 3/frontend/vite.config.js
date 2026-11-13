@@ -5,12 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '127.0.0.1',
     proxy: {
-      '^/api/v1/(auth|usuarios|profesionales)': 'http://127.0.0.1:8081',
-      '^/api/v1/(servicios|categorias)': 'http://127.0.0.1:8082',
-      '^/api/v1/(citas|pacientes|planes|progreso|contacto)': 'http://127.0.0.1:8083',
-      '^/api/v1/pedidos': 'http://127.0.0.1:8084',
+      '^/api/v1/(auth|usuarios|profesionales)': 'http://50.17.200.0:8081',
+      '^/api/v1/(servicios|categorias)': 'http://50.17.200.0:8082',
+      '^/api/v1/(citas|pacientes|planes|progreso|contacto)': 'http://50.17.200.0:8083',
+      '^/api/v1/pedidos': 'http://50.17.200.0:8084',
     },
   },
   test: {

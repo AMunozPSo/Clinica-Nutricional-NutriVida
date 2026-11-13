@@ -1,0 +1,100 @@
+x-app-env: &app-env
+  DB_USER: nutrivida
+  DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en .env}
+  JWT_PUBLIC_KEY: /run/keys/jwt-public.pem
+  USERS_URL: http://usuarios:8081
+  FRONTEND_ORIGINS: ${FRONTEND_ORIGINS:-http://localhost:5173}
+
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD en .env}
+      MYSQL_DATABASE: nutrivida_usuarios
+      MYSQL_USER: nutrivida
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h 127.0.0.1 -u root -p\"$${MYSQL_ROOT_PASSWORD}\" -e 'SELECT 1' >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+    restart: unless-stopped
+
+  usuarios:
+    build:
+      context: ./usuarios
+      dockerfile: services/usuarios/Dockerfile
+    user: "10001:10001"
+    environment:
+      <<: *app-env
+      DB_URL: jdbc:mysql://db:3306/nutrivida_usuarios?connectionTimeZone=UTC
+      JWT_PRIVATE_KEY: /run/keys/jwt-private.pem
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - ./keys/jwt-public.pem:/run/keys/jwt-public.pem:ro
+      - ./keys/jwt-private.pem:/run/keys/jwt-private.pem:ro
+    ports:
+      - "8081:8081"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  catalogo:
+    build:
+      context: ./catalogo
+      dockerfile: services/catalogo/Dockerfile
+    environment:
+      <<: *app-env
+      DB_URL: jdbc:mysql://db:3306/nutrivida_catalogo?connectionTimeZone=UTC
+    volumes:
+      - ./keys/jwt-public.pem:/run/keys/jwt-public.pem:ro
+    ports:
+      - "8082:8082"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  atencion:
+    build:
+      context: ./atencion
+      dockerfile: services/atencion/Dockerfile
+    environment:
+      <<: *app-env
+      DB_URL: jdbc:mysql://db:3306/nutrivida_atencion?connectionTimeZone=UTC
+      APP_CATALOG_URL: http://catalogo:8082
+    volumes:
+      - ./keys/jwt-public.pem:/run/keys/jwt-public.pem:ro
+    ports:
+      - "8083:8083"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ventas:
+    build:
+      context: ./ventas
+      dockerfile: services/ventas/Dockerfile
+    environment:
+      <<: *app-env
+      DB_URL: jdbc:mysql://db:3306/nutrivida_ventas?connectionTimeZone=UTC
+      APP_CATALOG_URL: http://catalogo:8082
+    volumes:
+      - ./keys/jwt-public.pem:/run/keys/jwt-public.pem:ro
+    ports:
+      - "8084:8084"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
